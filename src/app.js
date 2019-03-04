@@ -4,13 +4,14 @@ import session from 'koa-generic-session'
 import convert from 'koa-convert'
 import json from 'koa-json'
 import logger from 'koa-logger'
-import cors from 'koa2-cors'
 import bodyParser from 'koa-bodyparser'
 import koaRedis from 'koa-redis'
-import render from 'koa-art-template'
+import render, { template } from 'koa-art-template'
+console.log(render)
 import config from './configs/config'
 import router from './routes'
 import middlewares from './middlewares'
+import sd from 'silly-datetime'
 
 const redisStore = koaRedis({
     url: config.redisUrl
@@ -37,6 +38,13 @@ render(app, {
     extname: '.art', // 后缀名
     debug: process.env.NODE_ENV !== 'production' //是否开启调试模式
 })
+
+// 扩展时间模板方法
+template.defaults.imports.dateFormat = function(value) {
+    return sd.format(new Date(value), 'YYYY-MM-DD HH:mm');
+}
+
+
 app.use(middlewares.catchError)
 app.use(middlewares.addHelper)
 app.use(router.routes(), router.allowedMethods())

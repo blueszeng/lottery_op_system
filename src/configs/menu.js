@@ -1,18 +1,20 @@
 const menu = [{
     "id": "menu-article",
-    "text": "资讯管理",
+    "text": "游戏管理",
     "icon": "&#xe616",
     "children": [{
             "link": "#",
-            "text": "资讯管理",
-            "dataHref": "login"
+            "text": "游戏查询",
+            "dataHref": "game/listPage",
+            "onclick": "Hui_admin_tab(this)"
         },
         {
             "link": "#",
-            "text": "新增资讯",
-            "dataHref": "article-add.html",
+            "text": "添加游戏",
+            "dataHref": "game/addPage",
             "onclick": "Hui_admin_tab(this)"
         },
+
         {
             "text": "二级菜单",
             "children": [{

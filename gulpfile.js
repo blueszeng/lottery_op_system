@@ -88,6 +88,6 @@ gulp.task('rollup', function() {
             function(bundle, filePath) {
                 // cache[filePath] = bundle
             })
-        // .pipe(sourcemaps.write('.'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/public/js'))
 })

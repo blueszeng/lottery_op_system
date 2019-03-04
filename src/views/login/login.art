@@ -1,4 +1,4 @@
-{{extend './base/iframe.art'}}
+{{extend '../base/iframe.art'}}
 
 {{block 'title'}}login{{/block}}</title>
 

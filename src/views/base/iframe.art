@@ -13,9 +13,9 @@
 	<script type="text/javascript" src="lib/html5.js"></script>
 	<script type="text/javascript" src="lib/respond.min.js"></script>
 	<![endif]-->
-	<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-	<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.9/iconfont.css" />
-	<link rel="stylesheet" type="text/css" href="static/business/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/lib/Hui-iconfont/1.0.9/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="/static/business/css/style.css" />
 	
 	<!--[if IE 6]>
 	<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
@@ -32,9 +32,9 @@
     <input id="sysmsg" type="hidden" msg={{sysMsg}} status={{sysStatus}}>
     {{block 'content'}}{{/block}}
     <!--_footer 作为公共模版分离出去-->
-    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="lib/layer/3.1.1/layer.js"></script>
-    <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/layer/3.1.1/layer.js"></script>
+    <script type="text/javascript" src="/static/h-ui/js/H-ui.min.js"></script>
     <!--/_footer /作为公共模版分离出去-->
     {{block 'script'}}{{/block}}
 </body>

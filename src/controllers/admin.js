@@ -14,7 +14,7 @@ const index = async(ctx, next) => {
     //     password: bcrypt.hashSync('123456' + config.salt, 10)
     // })
     let uuid = Uuid()
-    await ctx.render('login', { uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
+    return await ctx.render('login/login', { uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
 }
 
 
