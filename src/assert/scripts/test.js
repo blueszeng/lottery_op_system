@@ -1,2 +1,2 @@
-import $ from 'jquery'
-console.log($)
+// import $ from 'jquery'
+// console.log($)

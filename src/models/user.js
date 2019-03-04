@@ -1,47 +1,56 @@
-import bcrypt from 'bcrypt'
-import config from '../configs/config'
+// 用户
 export default (sequelize, DataTypes) => {
-    const User = sequelize.define('AdminUser', {
+    const User = sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
+        head: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true,
+            },
+            comment: "头像",
+        },
         name: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             validate: {
                 notEmpty: true,
-                len: [1, 50]
-            }
+            },
+            comment: "名称",
         },
-        email: {
-            type: DataTypes.STRING,
+        dollar_money: {
+            type: DataTypes.FLOAT,
             validate: {
                 notEmpty: true,
-                isEmail: true
-            }
+            },
+            comment: "美元",
         },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        exchange_money: {
+            type: DataTypes.FLOAT,
             validate: {
-                notEmpty: true
-            }
+                notEmpty: true,
+            },
+            comment: "兑换币",
         }
     }, {
         underscored: true,
         tableName: 'users',
-        indexes: [{ unique: true, fields: ['email'] }],
-        classMethods: {},
-        instanceMethods: {
-            authenticate: function(value) {
-                if (bcrypt.compareSync(value + config.salt, this.password)) {
-                    return true
-                } else {
-                    return false
-                }
+        charset: 'utf8mb4',
+        indexes: [{ unique: true, fields: ['id'] }],
+        classMethods: {
+            associate: function(models) {
+                // associations can be defined here
+                User.hasMany(models.UserGoods, { foreignKey: 'uid', targetKey: 'id' });
+                User.hasMany(models.Order, { foreignKey: 'uid', targetKey: 'id' });
+                User.hasMany(models.GiveGoods, { foreignKey: 'send_uid', targetKey: 'id' });
+                User.hasMany(models.GiveGoods, { foreignKey: 'recv_uid', targetKey: 'id' });
+                User.hasMany(models.DecomposeGoods, { foreignKey: 'uid', targetKey: 'id' });
+                User.hasMany(models.ExchangeGoods, { foreignKey: 'uid', targetKey: 'id' });
             }
-        }
+        },
+        instanceMethods: {}
     })
     return User
 }

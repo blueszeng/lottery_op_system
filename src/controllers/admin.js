@@ -6,18 +6,17 @@ import config from '../configs/config'
 import debug from '../utils/debug'
 import { Joi, validate } from '../utils/validator'
 const log = debug(__filename)
+
+
 const index = async(ctx, next) => {
+    // models.Admin.create({
+    //     account: 'zyg',
+    //     password: bcrypt.hashSync('123456' + config.salt, 10)
+    // })
     let uuid = Uuid()
     await ctx.render('login', { uuid: uuid, csrf: ctx.csrf, sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
 }
-const signIn = async(ctx, next) => {
-    await models.User.create({
-        name: 'zeng',
-        email: 'zaq19999@163.com',
-        password: bcrypt.hashSync('123456' + config.salt, 10)
-    })
-    await ctx.render('login', {})
-}
+
 
 const loginOut = (ctx, next) => {
     if (!ctx.state.isUserSignIn) {
@@ -25,21 +24,24 @@ const loginOut = (ctx, next) => {
     }
     ctx.session.userId = null
     log('logout successfully!')
+
     ctx.redirect('/')
 }
 
+
+
 const login = async(ctx, next) => {
     const body = ctx.request.body
-    body.email = body.accounts
+    console.log(body)
         // 参数验证
     const schema = Joi.object().keys({
-        email: Joi.string().email().required().label('邮箱'),
+        account: Joi.string().required().label('邮箱x'),
         password: Joi.string().required().label('密码'),
         captcha: Joi.string().length(4).required().label('验证码')
     })
 
     const data = {
-        email: body.email,
+        account: body.account,
         password: body.password,
         captcha: body.captcha
     }
@@ -65,7 +67,7 @@ const login = async(ctx, next) => {
         return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
     }
     // 用户登录验证
-    let user = await models.User.findOne({ where: { email: body.email } })
+    let user = await models.Admin.findOne({ where: { account: body.account } })
     if (user && user.authenticate(body.password)) {
         ctx.session.userId = user.id
         ctx.status = 302
@@ -75,19 +77,16 @@ const login = async(ctx, next) => {
             sysMsg: escape('登陆成功')
         }
         return ctx.redirect(`/?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
-    } else {
-        console.log('user name or password error.')
-        const locals = {
-            sysStatus: 'error',
-            sysMsg: escape('用户名或密码错误')
-        }
-        return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
     }
+    const locals = {
+        sysStatus: 'error',
+        sysMsg: escape('用户名或密码错误')
+    }
+    return ctx.redirect(`/user?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
 }
 
 export default {
     index,
-    signIn,
     loginOut,
     login
 }

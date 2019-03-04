@@ -10,13 +10,13 @@
 	<div class="loginWraper">
         <div class="header">后台管理系统</div>
 		<div id="loginform" class="loginBox">
-			<form class="form form-horizontal" action="user/sign_in" method="post">
+			<form class="form form-horizontal" action="user/login" method="post">
                 <input type="hidden" name="_csrf" value={{csrf}} />
                 <input type="hidden" name="uuid" id='uuid' value={{uuid}} />
 				<div class="row clearfix">
 					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 					<div class="form-controls col-xs-8">
-						<input id="" name="accounts" type="text" placeholder="账户" class="input-text size-L">
+						<input id="" name="account" type="text" placeholder="账户" class="input-text size-L">
 					</div>
 				</div>
 				<div class="row clearfix">
