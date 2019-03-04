@@ -1,5 +1,5 @@
 // import '../styles/public.css'
-import log from './modules/init'
+import log from '../modules/init'
 import $ from 'jquery'
 
 // function 方法

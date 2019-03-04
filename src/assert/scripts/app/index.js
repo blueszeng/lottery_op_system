@@ -1,4 +1,4 @@
-import log from './modules/init'
+import log from '../modules/init'
 
 // 入口
 

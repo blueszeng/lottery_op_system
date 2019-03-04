@@ -7,7 +7,6 @@ import logger from 'koa-logger'
 import bodyParser from 'koa-bodyparser'
 import koaRedis from 'koa-redis'
 import render, { template } from 'koa-art-template'
-console.log(render)
 import config from './configs/config'
 import router from './routes'
 import middlewares from './middlewares'

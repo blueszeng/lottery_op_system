@@ -25,8 +25,8 @@ gulp.task('watch', function() {
     gulp.watch('src/assert/scripts/**/*', ['rollup'])
 })
 gulp.task('rollup', function() {
-    return gulp.src('src/assert/scripts/*.js')
-        .pipe(sourcemaps.init())
+    return gulp.src('src/assert/scripts/app/**/*.js')
+        // .pipe(sourcemaps.init())
         .pipe(
             rollup({
                 onwarn: function(message) {
@@ -88,6 +88,6 @@ gulp.task('rollup', function() {
             function(bundle, filePath) {
                 // cache[filePath] = bundle
             })
-        .pipe(sourcemaps.write('.'))
+        // .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/public/js'))
 })
