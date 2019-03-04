@@ -6,7 +6,6 @@ import $ from 'jquery'
 
 // 入口
 (async function main() {
-
     $('#article_save_submit').click((event) => {
         /* Act on the event */
         let data = {
