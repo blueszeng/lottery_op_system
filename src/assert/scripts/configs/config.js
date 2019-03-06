@@ -1,7 +1,9 @@
 const SERVER_BASE_URL = 'http://127.0.0.1:3000' // 服务器基地址
 const URL = {
     GAME: {
-        ADD: `/game/add`
+        ADD: `/game/add`,
+        UPLOAD: `/picture/upload`,
+        EDIT: `/game/edit`
     }
 }
 export const getServerUrl = (type, key) => {

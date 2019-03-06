@@ -9,7 +9,9 @@
         "es6": true
     },
     "globals": {
-        "ENV": true
+        "ENV": true,
+        "FormData": true,
+        "layer": true
     },
     "rules": {
         "arrow-parens": 0,

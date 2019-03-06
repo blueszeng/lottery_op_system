@@ -10,6 +10,10 @@ var database = {
             max: 5,
             min: 0,
             idle: 1000
+        },
+        logging: function(sql) {
+            // logger为log4js的Logger实例
+            // console.info(sql);
         }
     },
     production: {

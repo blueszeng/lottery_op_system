@@ -21,17 +21,23 @@ let get = async(url, data) => {
     return Promise.resolve(jsonValue)
 }
 
-let post = async(url, data) => {
+
+let post = async(url, data, isJson = true) => {
     let options = {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',
-        cache: 'no-cache',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' }
+        cache: 'no-cache'
+    }
+    if (isJson === true) {
+        options.body = JSON.stringify(data)
+        options.headers = { 'Content-Type': 'application/json' }
+    } else {
+        options.body = data
     }
     let jsonValue = null
     try {
+        console.log(options)
         let value = await fetch(url, options)
         jsonValue = value.json()
     } catch (err) {

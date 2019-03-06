@@ -1,5 +1,6 @@
 import Router from 'koa-router'
 import game from '../controllers/game'
+import { wrapRoute } from '../utils/wrapRoute'
 const router = Router({
     prefix: '/game'
 })
@@ -7,11 +8,11 @@ const router = Router({
 /* 页面 */
 router.get('/listPage', game.listPage) //主页面
 router.get('/addPage', game.addPage) //添加页面
-router.get('/eidtPage', game.eidtPage) //编辑页面
+router.get('/editPage', game.editPage) //编辑页面
 
 /* 记录 */
-router.post('/add', game.add) //添加记录
-router.post('/edit', game.edit) //编辑记录
+router.post('/add', wrapRoute(game.add)) //添加记录
+router.post('/edit', wrapRoute(game.edit)) //编辑记录
 router.post('/del', game.del) //删除记录
 
 router.post('/search', game.search) //查询

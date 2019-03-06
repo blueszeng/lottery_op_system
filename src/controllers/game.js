@@ -4,6 +4,9 @@ import util from '../utils/util'
 import models from '../models/index'
 import { Joi, validate } from '../utils/validator'
 
+import debug from '../utils/debug'
+const log = debug(__filename)
+
 
 /**
  * 主页面
@@ -27,8 +30,27 @@ const listPage = async(ctx, next) => {
  * @param {*} ctx 
  * @param {*} next 
  */
-const eidtPage = async(ctx, next) => {
-
+const editPage = async(ctx, next) => {
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        gameId: Joi.number().required().label('游戏id'),
+    })
+    try {
+        const { gameId } = await validate(query, validateSchema)
+        const game = await models.Game.findById(gameId)
+        await ctx.render('game/edit', {
+            sysStatus: ctx.query.sysStatus,
+            sysMsg: ctx.query.sysMsg,
+            game
+        })
+    } catch (err) {
+        log('验证参数错误', err.message)
+        const locals = {
+            sysStatus: 'error',
+            sysMsg: escape(err.message)
+        }
+        return ctx.redirect(`/game/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    }
 }
 
 /**
@@ -46,21 +68,26 @@ const addPage = async(ctx, next) => {
  * @param {*} next 
  */
 const add = async(ctx, next) => {
-    if (!ctx.state.isUserSignIn) {
-        return ctx.redirect('/user')
+    const body = ctx.request.body
+        // 参数验证
+    const schema = Joi.object().keys({
+        img: Joi.string().required().label('图片'),
+        name: Joi.string().required().label('名称'),
+        config: Joi.string().required().label('区配置')
+    })
+    try {
+        await validate(body, schema)
+    } catch (err) {
+        log(err)
+        return Promise.reject(`验证参数出错${err.message}`)
     }
-    let menu = { str: "" }
-    generate.generateMenu(menuConfig, menu)
-    let user = await models.Admin.findOne({ where: { id: ctx.session.userId } })
-    if (user === null) {
-        return ctx.redirect('/user')
+    try {
+        await models.Game.create(body)
+    } catch (err) {
+        log(err)
+        return Promise.reject(err)
     }
-    let userData = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-    }
-    await ctx.render('index', util.extendMsgStatus(ctx, { user: userData, 'menu': menu.str }))
+    return Promise.resolve(true)
 }
 
 
@@ -70,8 +97,35 @@ const add = async(ctx, next) => {
  * @param {*} next 
  */
 const edit = async(ctx, next) => {
-
+    let body = ctx.request.body
+        // 参数验证
+    const schema = Joi.object().keys({
+        gameId: Joi.number().required().label('游戏id'),
+        img: Joi.string().required().label('图片'),
+        name: Joi.string().required().label('名称'),
+        config: Joi.string().required().label('区配置')
+    })
+    try {
+        body = await validate(body, schema)
+    } catch (err) {
+        log(err)
+        return Promise.reject(`验证参数出错${err.message}`)
+    }
+    try {
+        let game = await models.Game.findById(body.gameId)
+        game.update({
+            img: body.img,
+            name: body.name,
+            config: body.config,
+        })
+        await game.save()
+    } catch (err) {
+        log(err)
+        return Promise.reject(err)
+    }
+    return Promise.resolve(true)
 }
+
 
 /**
  * 删除一条记录
@@ -97,7 +151,7 @@ const search = async(ctx, next) => {
 
 export default {
     listPage,
-    eidtPage,
+    editPage,
     addPage,
     add,
     edit,

@@ -7,24 +7,21 @@ import $ from 'jquery'
 
 // 入口
 (async function main() {
-    $('#article_save_submit').click(async(event) => {
+    $('#article_update_submit').click(async(event) => {
         /* Act on the event */
         // {"mane":1}
         let data = {
+            gameId: $('#game_id').val(),
             img: $('#img_id').val(),
             name: $('#name').val(),
             config: JSON.stringify($('#config').val())
         }
         try {
-            await http.post(getServerUrl('GAME', 'ADD'), data)
-            layer.msg('添加成功!', { icon: 1, time: 1000 })
-            $('#img_id').val('')
-            $('#name').val('')
-            $('#config').val('')
-            $('#result').html('')
+            await http.post(getServerUrl('GAME', 'EDIT'), data)
+            layer.msg('编辑成功!', { icon: 1, time: 1000 })
         } catch (err) {
             log(err.message)
-            layer.msg('添加失败!', { icon: 1, time: 1000 })
+            layer.msg('编辑失败!', { icon: 1, time: 1000 })
         }
     })
 

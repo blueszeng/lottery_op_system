@@ -12,9 +12,10 @@
 			<span class="c-gray en">/</span>
 			游戏管理
 			<span class="c-gray en">/</span>
-			新增游戏
+			编辑游戏
 			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 		</nav>
+        <input value="{{game.id}}" id="game_id" style="display:none">
 		<article class="Hui-admin-content clearfix">
 			<div class="panel">
 				<div class="panel-body">
@@ -22,7 +23,7 @@
                         <div class="row clearfix">
                             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="" placeholder="" id="name" name="">
+                                <input type="text" class="input-text" value="{{game.name}}" placeholder="" id="name" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
@@ -33,21 +34,20 @@
 									<p><input type="file" id="upload" name="" style="display:none"/></p> <!--选择按钮 可修改id -->
 								</form>
 								<!-- result 为要显示图片的id 可修改 -->
-								<div id="result"></div>
+								<div id="result"><img src="{{game.img}}" width="100"></div>
 								<!-- img 为要显示传到后端的图片 可修改 -->
-								<div id="img"></div>
+								<div id="img"><input value="{{game.img}}" id="img_id" style="display:none"></div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <label class="form-label col-xs-4 col-sm-2">兑换区配置：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <textarea id="config" cols="" rows="" class="textarea textarea-picture" placeholder="说点什么...最少输入10个字符"></textarea>
+                                <textarea id="config" cols=""  rows="" class="textarea textarea-picture" placeholder="说点什么...最少输入10个字符">{{game.config}}</textarea>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="article_save_submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-                                <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                                <button  id="article_update_submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
@@ -63,7 +63,7 @@
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 
-    <script type="text/javascript" src="/js/game/add.js"></script>
+    <script type="text/javascript" src="/js/game/edit.js"></script>
     <script type="text/javascript">
 		$(function(){
 			$('.skin-minimal input').iCheck({

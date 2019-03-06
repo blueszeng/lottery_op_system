@@ -25,6 +25,7 @@
     "jquery-validation": "^1.16.0",
     "koa": "^2.0.0-alpha.8",
     "koa-art-template": "^1.1.1",
+    "koa-body": "^4.0.8",
     "koa-bodyparser": "^3.2.0",
     "koa-compose": "^3.2.1",
     "koa-csrf": "^3.0.5",

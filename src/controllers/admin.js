@@ -3,8 +3,8 @@ import Uuid from 'uuid/v1'
 import catche from '../services/cache'
 import bcrypt from 'bcrypt'
 import config from '../configs/config'
-import debug from '../utils/debug'
 import { Joi, validate } from '../utils/validator'
+import debug from '../utils/debug'
 const log = debug(__filename)
 
 
@@ -32,7 +32,6 @@ const loginOut = (ctx, next) => {
 
 const login = async(ctx, next) => {
     const body = ctx.request.body
-    console.log(body)
         // 参数验证
     const schema = Joi.object().keys({
         account: Joi.string().required().label('邮箱x'),

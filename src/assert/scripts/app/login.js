@@ -4,7 +4,7 @@ import $ from 'jquery'
 
 // function 方法
 const refrushCaptcha = () => {
-    $('#getcode').attr('src', `/captcha?uuid=${$('#uuid').val()}&${Math.random()}`)
+    $('#getcode').attr('src', `/picture/captcha?uuid=${$('#uuid').val()}&${Math.random()}`)
 }
 
 //  入口
