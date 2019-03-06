@@ -1,22 +1,22 @@
-{{extend './base/iframe.art'}}
+{{extend '../base/iframe.art'}}
 
 {{block 'title'}}login{{/block}}</title>
 
 {{block 'head'}}
-    <link rel="stylesheet" type="text/css" href="static/h-ui.admin.pro.iframe/css/H-ui.login.css" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin.pro.iframe/css/H-ui.login.css" />
 {{/block}}
 
 {{block 'content'}}
 	<div class="loginWraper">
         <div class="header">后台管理系统</div>
 		<div id="loginform" class="loginBox">
-			<form class="form form-horizontal" action="user/sign_in" method="post">
+			<form class="form form-horizontal" action="user/login" method="post">
                 <input type="hidden" name="_csrf" value={{csrf}} />
                 <input type="hidden" name="uuid" id='uuid' value={{uuid}} />
 				<div class="row clearfix">
 					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 					<div class="form-controls col-xs-8">
-						<input id="" name="accounts" type="text" placeholder="账户" class="input-text size-L">
+						<input id="" name="account" type="text" placeholder="账户" class="input-text size-L">
 					</div>
 				</div>
 				<div class="row clearfix">
@@ -52,5 +52,5 @@
 {{/block}}
 
 {{block 'script'}}
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
 {{/block}}

@@ -1,47 +1,55 @@
-import bcrypt from 'bcrypt'
-import config from '../configs/config'
+// 用户
 export default (sequelize, DataTypes) => {
-    const User = sequelize.define('AdminUser', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        name: {
-            type: DataTypes.STRING,
-            validate: {
-                notEmpty: true,
-                len: [1, 50]
+    const User = sequelize.define('User', {
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            head: {
+                type: DataTypes.STRING,
+                validate: {
+                    notEmpty: true,
+                },
+                comment: "头像",
+            },
+            name: {
+                type: DataTypes.INTEGER,
+                validate: {
+                    notEmpty: true,
+                },
+                comment: "名称",
+            },
+            dollar_money: {
+                type: DataTypes.FLOAT,
+                validate: {
+                    notEmpty: true,
+                },
+                comment: "美元",
+            },
+            exchange_money: {
+                type: DataTypes.FLOAT,
+                validate: {
+                    notEmpty: true,
+                },
+                comment: "兑换币",
             }
-        },
-        email: {
-            type: DataTypes.STRING,
-            validate: {
-                notEmpty: true,
-                isEmail: true
-            }
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        }
-    }, {
-        underscored: true,
-        tableName: 'users',
-        indexes: [{ unique: true, fields: ['email'] }],
-        classMethods: {},
-        instanceMethods: {
-            authenticate: function(value) {
-                if (bcrypt.compareSync(value + config.salt, this.password)) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }
-    })
+        }, {
+            underscored: true,
+            tableName: 'users',
+            charset: 'utf8mb4',
+            indexes: [{ unique: true, fields: ['id'] }],
+            classMethods: {},
+            instanceMethods: {}
+        })
+        // 添加一个类级别的方法
+    User.associate = function(models) {
+        User.hasMany(models.UserGoods, { foreignKey: 'uid', targetKey: 'id' });
+        User.hasMany(models.Order, { foreignKey: 'uid', targetKey: 'id' });
+        User.hasMany(models.GiveGoods, { foreignKey: 'send_uid', targetKey: 'id' });
+        User.hasMany(models.GiveGoods, { foreignKey: 'recv_uid', targetKey: 'id' });
+        User.hasMany(models.DecomposeGoods, { foreignKey: 'uid', targetKey: 'id' });
+        User.hasMany(models.ExchangeGoods, { foreignKey: 'uid', targetKey: 'id' });
+    }
     return User
 }

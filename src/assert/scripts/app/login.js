@@ -1,9 +1,8 @@
 // import '../styles/public.css'
-import log from './modules/init'
+import log from '../modules/init'
 import $ from 'jquery'
 
 // function 方法
-// 刷新验证码
 const refrushCaptcha = () => {
     $('#getcode').attr('src', `/captcha?uuid=${$('#uuid').val()}&${Math.random()}`)
 }

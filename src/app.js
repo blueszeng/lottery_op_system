@@ -1,16 +1,16 @@
 import path from 'path'
 import Koa from 'koa'
 import session from 'koa-generic-session'
-// import Dust from 'koa-dust'
 import convert from 'koa-convert'
 import json from 'koa-json'
 import logger from 'koa-logger'
 import bodyParser from 'koa-bodyparser'
 import koaRedis from 'koa-redis'
-import render from 'koa-art-template'
+import render, { template } from 'koa-art-template'
 import config from './configs/config'
 import router from './routes'
 import middlewares from './middlewares'
+import sd from 'silly-datetime'
 
 const redisStore = koaRedis({
     url: config.redisUrl
@@ -32,19 +32,18 @@ app.use(bodyParser())
 app.use(convert(json()))
 app.use(convert(logger()))
 
-
 render(app, {
     root: path.join(__dirname, 'views'), // 视图的位置
     extname: '.art', // 后缀名
     debug: process.env.NODE_ENV !== 'production' //是否开启调试模式
 })
 
-// app.use(Dust(path.join(__dirname, 'views'), {
-//     // stream: false,
-//     compile: true,
-//     cache: false,
-//     ext: 'dust'
-// }))
+// 扩展时间模板方法
+template.defaults.imports.dateFormat = function(value) {
+    return sd.format(new Date(value), 'YYYY-MM-DD HH:mm');
+}
+
+
 app.use(middlewares.catchError)
 app.use(middlewares.addHelper)
 app.use(router.routes(), router.allowedMethods())
