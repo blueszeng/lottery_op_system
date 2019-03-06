@@ -4,3 +4,4 @@ build/
 .tags
 dump.rdb
 src/public/js/
+src/configs/database.js
