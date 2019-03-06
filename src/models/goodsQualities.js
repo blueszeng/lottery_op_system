@@ -10,10 +10,10 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             comment: "游戏ID",
         },
-        qualities: {
+        img: {
             notEmpty: true,
-            type: DataTypes.INTEGER,
-            comment: "品质",
+            type: DataTypes.STRING,
+            comment: "品质图",
         },
         name: {
             type: DataTypes.STRING,
@@ -30,5 +30,10 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    GoodsQualities.associate = function(models) {
+        GoodsQualities.hasMany(models.Goods, { foreignKey: 'goods_qualities_id', targetKey: 'id' });
+    }
     return GoodsQualities
 }

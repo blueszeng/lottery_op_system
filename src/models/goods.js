@@ -6,10 +6,10 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        icon: {
+        img: {
             notEmpty: true,
             type: DataTypes.STRING,
-            comment: "游戏icon",
+            comment: "物品图片",
         },
         game_id: {
             notEmpty: true,
@@ -21,30 +21,40 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             comment: "物品型号ID",
         },
-        // goods_qualities_id: {
-        //     notEmpty: true,
-        //     type: DataTypes.INTEGER,
-        //     comment: "物品品质ID",
-        // },
+        goods_qualities_id: {
+            notEmpty: true,
+            type: DataTypes.INTEGER,
+            comment: "物品品质ID",
+        },
         name: {
             notEmpty: true,
             type: DataTypes.STRING,
             comment: "名称",
         },
-        pirce: {
+        skin_name: {
+            notEmpty: true,
+            type: DataTypes.STRING,
+            comment: "皮肤名称",
+        },
+        discrable: {
+            notEmpty: true,
+            type: DataTypes.STRING,
+            comment: "描述",
+        },
+        min_cost_price: {
             notEmpty: true,
             type: DataTypes.INTEGER,
-            comment: "价格",
+            comment: "幸运抽奖最小消耗",
+        },
+        max_cost_price: {
+            notEmpty: true,
+            type: DataTypes.INTEGER,
+            comment: "幸运抽奖最大消耗",
         },
         exchange_price: {
             notEmpty: true,
             type: DataTypes.INTEGER,
             comment: "兑换价格",
-        },
-        draw_price: {
-            notEmpty: true,
-            type: DataTypes.INTEGER,
-            comment: "抽奖价格",
         },
         decompose_dollar_py: {
             notEmpty: true,
@@ -69,22 +79,21 @@ export default (sequelize, DataTypes) => {
         tableName: 'goods',
         charset: 'utf8mb4',
         indexes: [{ unique: true, fields: ['id'] }],
-        classMethods: {
-            associate: function(models) {
-                // associations can be defined here
-                Goods.belongsToMany(models.Box, {
-                    through: {
-                        model: models.BoxGoods
-                    },
-                    foreignKey: 'goods_id'
-                });
-                Goods.hasMany(models.DecomposeGoods, { foreignKey: 'goods_id', targetKey: 'id' });
-                Goods.hasMany(models.ExchangeGoods, { foreignKey: 'goods_id', targetKey: 'id' });
-                Goods.hasMany(models.GiveGoods, { foreignKey: 'goods_id', targetKey: 'id' });
-                Goods.hasMany(models.UserGoods, { foreignKey: 'goods_id', targetKey: 'id' });
-            }
-        },
+        classMethods: {},
         instanceMethods: {}
     })
+    Goods.associate = function(models) {
+        // associations can be defined here
+        Goods.belongsToMany(models.Box, {
+            through: {
+                model: models.BoxGoods
+            },
+            foreignKey: 'goods_id'
+        })
+        Goods.hasMany(models.DecomposeGoods, { foreignKey: 'goods_id', targetKey: 'id' })
+        Goods.hasMany(models.ExchangeGoods, { foreignKey: 'goods_id', targetKey: 'id' })
+        Goods.hasMany(models.GiveGoods, { foreignKey: 'goods_id', targetKey: 'id' })
+        Goods.hasMany(models.UserGoods, { foreignKey: 'goods_id', targetKey: 'id' })
+    }
     return Goods
 }

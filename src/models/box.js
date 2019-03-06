@@ -47,18 +47,18 @@ export default (sequelize, DataTypes) => {
         tableName: 'boxs',
         charset: 'utf8mb4',
         indexes: [{ unique: true, fields: ['id'] }],
-        classMethods: {
-            associate: function(models) {
-                // associations can be defined here
-                Box.belongsToMany(models.Goods, {
-                    through: {
-                        model: models.BoxGoods
-                    },
-                    foreignKey: 'box_id'
-                });
-            }
-        },
+        classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    Box.associate = function(models) {
+        Box.belongsToMany(models.Goods, {
+            through: {
+                model: models.BoxGoods
+            },
+            foreignKey: 'box_id'
+        })
+    }
     return Box
 }

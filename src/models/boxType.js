@@ -37,11 +37,16 @@ export default (sequelize, DataTypes) => {
         classMethods: {
             associate: function(models) {
                 // associations can be defined here
-                models.BoxType.hasMany(models.Box, { foreignKey: 'box_type_id', targetKey: 'id' });
-                models.Box.belongsTo(models.BoxType);
+
             }
         },
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    BoxType.associate = function(models) {
+        models.BoxType.hasMany(models.Box, { foreignKey: 'box_type_id', targetKey: 'id' });
+        models.Box.belongsTo(models.BoxType);
+    }
     return BoxType
 }

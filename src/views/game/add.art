@@ -22,18 +22,24 @@
                         <div class="row clearfix">
                             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+                                <input type="text" class="input-text" value="" placeholder="" id="name" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2">icon来源：</label>
+                            <label class="form-label col-xs-4 col-sm-2">img来源：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+                                <input type="text" class="input-text" value="" placeholder="" id="icon" name="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2">兑换区配置：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+                                <textarea id="zone_config" cols="" rows="" class="textarea textarea-picture" placeholder="说点什么...最少输入10个字符"></textarea>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button onClick="article_save_submit();" id="article_save_submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                                <button  id="article_save_submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                                 <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
                             </div>
                         </div>

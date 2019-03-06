@@ -20,13 +20,13 @@ export default (sequelize, DataTypes) => {
         tableName: 'goods_types',
         charset: 'utf8mb4',
         indexes: [{ unique: true, fields: ['id'] }],
-        classMethods: {
-            associate: function(models) {
-                // associations can be defined here
-                GoodsType.hasMany(models.Goods, { foreignKey: 'goods_type_id', targetKey: 'id' });
-            }
-        },
+        classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    GoodsType.associate = function(models) {
+        GoodsType.hasMany(models.GoodsModel, { foreignKey: 'goods_type_id', targetKey: 'id' });
+    }
     return GoodsType
 }

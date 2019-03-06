@@ -2,8 +2,7 @@ import menuConfig from '../configs/menu'
 import generate from '../utils/menu'
 import util from '../utils/util'
 import models from '../models/index'
-
-
+import { Joi, validate } from '../utils/validator'
 
 
 /**

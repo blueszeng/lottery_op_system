@@ -15,6 +15,7 @@ fs.readdirSync(__dirname).forEach((file) => {
     let route = require(path.join(__dirname, file))
     router.use(route.routes(), route.allowedMethods())
 })
+
 router.get('/', home.index)
 
 export default router

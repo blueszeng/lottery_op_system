@@ -33,7 +33,7 @@
 						<span class="f-l">
 							<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 						</span>
-						<span class="r">共有数据：<strong>54</strong> 条</span>
+						<span class="r">共有数据：<strong>{{games.length}}</strong> 条</span>
 					</div>
 					<div class="mt-20 clearfix">
 						<table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -42,7 +42,7 @@
                                     <th width="40"><input name="" type="checkbox" value=""></th>
                                     <th width="80">游戏ID</th>
                                     <th width="100">游戏名称</th>
-                                    <th width="100">游戏icon</th>
+                                    <th width="100">游戏图片</th>
                                     <th width="150">更新时间</th>
 									<th width="60">发布状态</th>
                                     <th width="100">操作</th>
