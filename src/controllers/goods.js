@@ -14,7 +14,6 @@ const log = debug(__filename)
  * @param {*} next 
  */
 const listPage = async(ctx, next) => {
-    console.log('weewwewwwww')
     let offset = ctx.query.offset || 0
     let limit = ctx.query.limit || 10
     let games = await models.Game.findAll({ offset, limit })
@@ -150,6 +149,25 @@ const search = async(ctx, next) => {
 
 
 
+//TODO: 物品型号
+
+/**
+ * 物品型号列表
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+const goodModellistPage = async(ctx, next) => {
+    let offset = ctx.query.offset || 0
+    let limit = ctx.query.limit || 10
+    let games = await models.Game.findAll({ offset, limit })
+    await ctx.render('goods/goodsModel/list', {
+        sysStatus: ctx.query.sysStatus,
+        sysMsg: ctx.query.sysMsg,
+        games: games
+    })
+}
+
+
 export default {
     listPage,
     editPage,
@@ -157,5 +175,7 @@ export default {
     add,
     edit,
     del,
-    search
+    search,
+    goodModellistPage
+    
 }
