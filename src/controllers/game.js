@@ -49,7 +49,7 @@ const editPage = async(ctx, next) => {
             sysStatus: 'error',
             sysMsg: escape(err.message)
         }
-        return ctx.redirect(`/game/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+        return ctx.redirect(`game/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
     }
 }
 
@@ -121,7 +121,7 @@ const edit = async(ctx, next) => {
         await game.save()
     } catch (err) {
         log(err)
-        return Promise.reject(err)
+        return Promise.reject(err.message)
     }
     return Promise.resolve(true)
 }
@@ -133,9 +133,26 @@ const edit = async(ctx, next) => {
  * @param {*} next 
  */
 const del = async(ctx, next) => {
-
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        gameId: Joi.number().required().label('游戏id'),
+    })
+    try {
+        const { gameId } = await validate(query, validateSchema)
+        const game = await models.Game.findById(gameId)
+        console.log(game)
+        game.destroy()
+        return Promise.resolve(true)
+    } catch (err) {
+        log('验证参数错误', err.message)
+        return Promise.reject(err.message)
+    }
 }
 
+// teacher = Teacher.findById(2)
+// students = teacher.getStudents()
+// for (let student of students) { student.destory() }
+// teacher.destory()
 
 
 /**

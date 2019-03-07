@@ -37,16 +37,7 @@ export default (sequelize, DataTypes) => {
         tableName: 'games',
         charset: 'utf8mb4',
         indexes: [{ unique: true, fields: ['id'] }],
-        classMethods: {
-            associate: function(models) {
-                // associations can be defined here
-                Game.hasMany(models.BoxType, { foreignKey: 'game_id', targetKey: 'id' });
-                Game.hasMany(models.Goods, { foreignKey: 'game_id', targetKey: 'id' });
-                Game.hasMany(models.GoodsType, { foreignKey: 'game_id', targetKey: 'id' });
-                Game.hasMany(models.GoodsQualities, { foreignKey: 'game_id', targetKey: 'id' });
-                Game.hasMany(models.ExchangeGoods, { foreignKey: 'game_id', targetKey: 'id' });
-            }
-        },
+        classMethods: {},
         instanceMethods: {}
     })
 

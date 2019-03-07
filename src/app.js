@@ -29,7 +29,8 @@ app.use(convert(session({
 })))
 
 app.use(koaBody())
-    // app.use(bodyParser())
+
+// app.use(bodyParser())
 
 // app.use(convert(json()))
 

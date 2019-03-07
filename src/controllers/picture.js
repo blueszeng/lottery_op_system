@@ -6,7 +6,6 @@ const getCaptcha = async(ctx, next) => {
 }
 
 const upload = async(ctx, next) => {
-    console.log('cddddd', ctx.uploadpath)
     return Promise.resolve(ctx.uploadpath)
 }
 

@@ -1,4 +1,4 @@
-// 物品分类
+// 物品型号分类
 export default (sequelize, DataTypes) => {
     const GoodsModel = sequelize.define('GoodsModel', {
             id: {

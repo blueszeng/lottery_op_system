@@ -3,7 +3,8 @@ const URL = {
     GAME: {
         ADD: `/game/add`,
         UPLOAD: `/picture/upload`,
-        EDIT: `/game/edit`
+        EDIT: `/game/edit`,
+        DEL: `/game/del`
     }
 }
 export const getServerUrl = (type, key) => {

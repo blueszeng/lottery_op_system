@@ -5,16 +5,15 @@ const menu = [{
     "children": [{
             "link": "#",
             "text": "游戏查询",
-            "dataHref": "game/listPage",
+            "dataHref": "/game/listPage",
             "onclick": "Hui_admin_tab(this)"
         },
         {
             "link": "#",
             "text": "添加游戏",
-            "dataHref": "game/addPage",
+            "dataHref": "/game/addPage",
             "onclick": "Hui_admin_tab(this)"
         },
-
         {
             "text": "二级菜单",
             "children": [{
