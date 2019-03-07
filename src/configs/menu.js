@@ -31,15 +31,11 @@ const menu = [{
     'text': '物品管理',
     'icon': '&#xe616',
     'children': [{
-            // 'link': '#',
-            // 'text': '物品分类-类型',
-            // 'dataHref': 'game/listPage',
-            // 'onclick': 'Hui_admin_tab(this)'
             'text': '物品分类',
             'children': [{
                 'link': '#',
                 'text': '物品分类查询',
-                'dataHref': 'game/addPage',
+                'dataHref': '/goods/goodType/listPage',
                 'onclick': 'Hui_admin_tab(this)'
             },{
                 'link': '#',
@@ -49,23 +45,65 @@ const menu = [{
             }]
         },
         {
-            'link': '#',
             'text': '物品型号',
-            'dataHref': 'game/addPage',
-            'onclick': 'Hui_admin_tab(this)'
+            'children': [{
+                'link': '#',
+                'text': '物品型号询',
+                'dataHref': 'game/addPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },{
+                'link': '#',
+                'text': '物品型号添加',
+                'dataHref': 'game/addPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }]
         },
         {
-            'link': '#',
             'text': '物品品质',
-            'dataHref': 'game/addPage',
-            'onclick': 'Hui_admin_tab(this)'
+            'children': [{
+                'link': '#',
+                'text': '物品品质号询',
+                'dataHref': 'game/addPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },{
+                'link': '#',
+                'text': '物品品质添加',
+                'dataHref': 'game/addPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }]
         },
         {
-            'link': '#',
-            'text': '物品名称',
-            'dataHref': 'game/addPage',
-            'onclick': 'Hui_admin_tab(this)'
-        },
+            'text': '物品',
+            'children': [{
+                'link': '#',
+                'text': '物品查询',
+                'dataHref': 'game/addPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },{
+                'link': '#',
+                'text': '物品添加',
+                'dataHref': 'game/addPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }]
+        }
+        // {
+        //     'link': '#',
+        //     'text': '物品型号',
+        //     'dataHref': 'game/addPage',
+        //     'onclick': 'Hui_admin_tab(this)'
+        // },
+        // {
+        //     'link': '#',
+        //     'text': '物品品质',
+        //     'dataHref': 'game/addPage',
+        //     'onclick': 'Hui_admin_tab(this)'
+        // },
+        // {
+        //     'link': '#',
+        //     'text': '物品名称',
+        //     'dataHref': 'game/addPage',
+        //     'onclick': 'Hui_admin_tab(this)'
+        // },
 
     ]
 }
