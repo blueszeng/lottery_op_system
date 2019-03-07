@@ -8,6 +8,7 @@ const router = Router({
 /* 物品管理 页面 */
 router.get('/goodsType/listPage', goods.listPage) //物品分类列表
 
+router.get('/goodsType/addPage', goods.addPage) //新增物品分类
 
 
 

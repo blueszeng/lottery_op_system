@@ -34,12 +34,12 @@ const menu = [{
                 'children': [{
                     'link': '#',
                     'text': '物品分类查询',
-                    'dataHref': '/goods/goodType/listPage',
+                    'dataHref': '/goods/goodsType/listPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }, {
                     'link': '#',
                     'text': '物品分类添加',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goodsType/addPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }]
             },

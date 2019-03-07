@@ -60,7 +60,7 @@ const editPage = async(ctx, next) => {
  * @param {*} next 
  */
 const addPage = async(ctx, next) => {
-    await ctx.render('game/add', { sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
+    await ctx.render('goods/goodsType/add', { sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
 }
 
 /**
