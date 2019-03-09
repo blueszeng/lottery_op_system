@@ -97,6 +97,7 @@ const add = async(ctx, next) => {
  * @param {*} next 
  */
 const edit = async(ctx, next) => {
+    console.log('sddsdssds')
     let body = ctx.request.body
         // 参数验证
     const schema = Joi.object().keys({
@@ -155,13 +156,43 @@ const del = async(ctx, next) => {
 // teacher.destory()
 
 
+
+
+
+/**
+ * 上下架接口
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+const open = async(ctx, next) => {
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        gameId: Joi.number().required().label('游戏id')
+    })
+    try {
+        console.log('fuck', query, query.gameId)
+        const { gameId } = await validate(query, validateSchema)
+        const game = await models.Game.findById(gameId)
+        console.log('fuck22', game.show)
+        game.update({ show: !game.show ? 1 : 0 })
+        await game.save()
+        return Promise.resolve(true)
+    } catch (err) {
+        log('验证参数错误', err.message)
+        return Promise.reject(err.message)
+    }
+}
+
+
 /**
  * 查询接口
  * @param {*} ctx 
  * @param {*} next 
  */
 const search = async(ctx, next) => {
-
+    const game = await models.Game.findById(gameId)
+    console.log(game)
+    game.destroy()
 }
 
 
@@ -173,5 +204,6 @@ export default {
     add,
     edit,
     del,
-    search
+    search,
+    open
 }

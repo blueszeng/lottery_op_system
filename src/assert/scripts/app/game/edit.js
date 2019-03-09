@@ -1,7 +1,7 @@
 import log from '../../modules/init'
 import http from '../../modules/http'
 import upload from '../../modules/upload'
-import { getServerUrl } from '../../configs/config'
+import { getServer } from '../../configs/config'
 import $ from 'jquery'
 
 
@@ -17,7 +17,8 @@ import $ from 'jquery'
             config: JSON.stringify($('#config').val())
         }
         try {
-            await http.post(getServerUrl('GAME', 'EDIT'), data)
+            let serve = getServer('GAME', 'EDIT')
+            await http[serve.method](serve.url, data)
             layer.msg('编辑成功!', { icon: 1, time: 1000 })
         } catch (err) {
             log(err.message)

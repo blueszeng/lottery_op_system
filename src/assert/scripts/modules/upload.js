@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { getServerUrl } from '../configs/config'
+import { getServer } from '../configs/config'
 import http from './http'
 
 let uploadImg = ({ clikBnId, selectFileId, showId, submitId }) => {
@@ -41,7 +41,8 @@ let uploadImg = ({ clikBnId, selectFileId, showId, submitId }) => {
             let data = new FormData($('#formUpload')[0])
             data.append('picture', file)
             try {
-                let ret = await http.post(getServerUrl('GAME', 'UPLOAD'), data, false)
+                let serve = getServer('GAME', 'UPLOAD')
+                let ret = await http[serve.method](serve.url, data, false)
                 ret = ret.data
                 let result = ''
                 let result1 = ''

@@ -25,9 +25,10 @@ export default (sequelize, DataTypes) => {
         },
         show: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1,
             validate: {
                 notEmpty: true,
-                defaultValue: true
             },
             comment: "是否显示",
         },
