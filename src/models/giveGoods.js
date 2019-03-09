@@ -36,11 +36,13 @@ export default (sequelize, DataTypes) => {
         },
         state: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1,
             validate: {
                 notEmpty: true,
             },
             comment: "状态",
-        }
+        },
     }, {
         underscored: true,
         tableName: 'give_goods_records',
