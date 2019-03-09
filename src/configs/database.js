@@ -4,8 +4,8 @@ var database = {
         password: process.env.DATABASE_PASSWORD_DEV || 'my-secret-pw',
         database: process.env.DATABASE_NAME_DEV || 'lottery',
         // host: process.env.DATABASE_HOST_DEV || '47.107.155.245',
-        host: process.env.DATABASE_HOST_DEV || '192.168.0.111',
-        // host: process.env.DATABASE_HOST_DEV || '192.168.1.126',
+        // host: process.env.DATABASE_HOST_DEV || '192.168.0.111',
+        host: process.env.DATABASE_HOST_DEV || '192.168.1.126',
         dialect: 'mysql',
         pool: {
             max: 5,

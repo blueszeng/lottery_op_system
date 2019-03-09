@@ -97,14 +97,13 @@ const add = async(ctx, next) => {
  * @param {*} next 
  */
 const edit = async(ctx, next) => {
-    console.log('sddsdssds')
     let body = ctx.request.body
-        // 参数验证
+    console.log('cmdmd', body)
     const schema = Joi.object().keys({
-        gameId: Joi.number().required().label('游戏id'),
-        img: Joi.string().required().label('图片'),
-        name: Joi.string().required().label('名称'),
-        config: Joi.string().required().label('区配置')
+        gameId: Joi.number().required().min(1).label('游戏id'),
+        img: Joi.string().required().min(1).label('图片'),
+        name: Joi.string().required().min(1).label('名称'),
+        config: Joi.string().required().min(1).label('区配置')
     })
     try {
         body = await validate(body, schema)
@@ -120,11 +119,12 @@ const edit = async(ctx, next) => {
             config: body.config,
         })
         await game.save()
+        console.log('okkkkkkkkkkkkkkkkk')
+        return Promise.resolve({})
     } catch (err) {
         log(err)
         return Promise.reject(err.message)
     }
-    return Promise.resolve(true)
 }
 
 

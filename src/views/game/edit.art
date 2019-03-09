@@ -5,18 +5,10 @@
 {{block 'head'}}
 {{/block}}
 
+
 {{block 'content'}}
 	<div class="wap-container">
-		<nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
-			首页
-			<span class="c-gray en">/</span>
-			游戏管理
-			<span class="c-gray en">/</span>
-			编辑游戏
-			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
-		</nav>
         <input value="{{game.id}}" id="game_id" style="display:none">
-		<article class="Hui-admin-content clearfix">
 			<div class="panel">
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
@@ -29,10 +21,8 @@
                         <div class="row clearfix">
                             <label class="form-label col-xs-4 col-sm-2">img来源：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-								<form id="formUpload">  <!--不可修改id -->
-									<input type="button" class="btn btn-default radius" value="上传图片" id="changeUpload" name="">  <!-- 点击触发选择控件更改事件 -->
-									<p><input type="file" id="upload" name="" style="display:none"/></p> <!--选择按钮 可修改id -->
-								</form>
+								<input type="button" class="btn btn-default radius" value="上传图片" id="changeUpload" name="">  <!-- 点击触发选择控件更改事件 -->
+								<p><input type="file" id="upload" name="" style="display:none"/></p> <!--选择按钮 可修改id -->
 								<!-- result 为要显示图片的id 可修改 -->
 								<div id="result"><img src="{{game.img}}" width="100"></div>
 								<!-- img 为要显示传到后端的图片 可修改 -->
@@ -47,18 +37,16 @@
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="article_update_submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                                <button id = 'article_update_submit' type="button" class="btn btn-primary"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
 				</div>
 			</div>
-		</article>
 	</div>
 {{/block}}
 
 {{block 'script'}}
-    // <script type="text/javascript" src="/js/login.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>

@@ -14,12 +14,16 @@ import $ from 'jquery'
             gameId: $('#game_id').val(),
             img: $('#img_id').val(),
             name: $('#name').val(),
-            config: JSON.stringify($('#config').val())
+            config: $('#config').val()
         }
         try {
             let serve = getServer('GAME', 'EDIT')
-            await http[serve.method](serve.url, data)
-            layer.msg('编辑成功!', { icon: 1, time: 1000 })
+            let v = await http[serve.method](serve.url, data)
+            layer.msg('编辑成功!', { icon: 1, time: 500 }, function() {
+                let index = parent.layer.getFrameIndex(window.name)
+                parent.layer.close(index)
+                parent.location.reload() // 父页面刷新
+            })
         } catch (err) {
             log(err.message)
             layer.msg('编辑失败!', { icon: 1, time: 1000 })

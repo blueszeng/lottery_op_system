@@ -11,7 +11,8 @@
     "globals": {
         "ENV": true,
         "FormData": true,
-        "layer": true
+        "layer": true,
+        "parent": true
     },
     "rules": {
         "arrow-parens": 0,

@@ -38,7 +38,8 @@ let uploadImg = ({ clikBnId, selectFileId, showId, submitId }) => {
             console.log('上传的文件不能超过10MB')
             return false
         } else {
-            let data = new FormData($('#formUpload')[0])
+            // let data = new FormData($('#formUpload')[0])
+            var data = new FormData()
             data.append('picture', file)
             try {
                 let serve = getServer('GAME', 'UPLOAD')
