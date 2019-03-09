@@ -6,11 +6,6 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        game_id: {
-            notEmpty: true,
-            type: DataTypes.INTEGER,
-            comment: "游戏ID",
-        },
         name: {
             notEmpty: true,
             type: DataTypes.STRING,

@@ -6,15 +6,20 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        game_id: {
+            notEmpty: true,
+            type: DataTypes.INTEGER,
+            comment: "游戏ID",
+        },
         box_type_id: {
             notEmpty: true,
             type: DataTypes.INTEGER,
             comment: "宝箱类型ID",
         },
-        icon: {
+        img: {
             notEmpty: true,
             type: DataTypes.STRING,
-            comment: "宝箱icon",
+            comment: "宝箱img",
         },
         name: {
             notEmpty: true,
