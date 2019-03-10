@@ -9,8 +9,6 @@ const log = debug(__filename)
 
 
 
-
-
 /**
  * 主页面
  * @param {*} ctx 
@@ -37,7 +35,6 @@ const goodsModelListPage = async(ctx, next) => {
             }]
         })
         // console.log(JSON.stringify(goodsModels, null, 2))
-
     await ctx.render('goods/goodsModel/list', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
