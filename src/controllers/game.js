@@ -98,7 +98,6 @@ const add = async(ctx, next) => {
  */
 const edit = async(ctx, next) => {
     let body = ctx.request.body
-    console.log('cmdmd', body)
     const schema = Joi.object().keys({
         gameId: Joi.number().required().min(1).label('游戏id'),
         img: Joi.string().required().min(1).label('图片'),
@@ -112,15 +111,16 @@ const edit = async(ctx, next) => {
         return Promise.reject(`验证参数出错${err.message}`)
     }
     try {
-        let game = await models.Game.findById(body.gameId)
-        game.update({
+        await models.Game.update({
             img: body.img,
             name: body.name,
-            config: body.config,
+            config: body.config
+        }, {
+            where: {
+                id: body.gameId
+            }
         })
-        await game.save()
-        console.log('okkkkkkkkkkkkkkkkk')
-        return Promise.resolve({})
+        return Promise.resolve(true)
     } catch (err) {
         log(err)
         return Promise.reject(err.message)
@@ -140,9 +140,11 @@ const del = async(ctx, next) => {
     })
     try {
         const { gameId } = await validate(query, validateSchema)
-        const game = await models.Game.findById(gameId)
-        console.log(game)
-        game.destroy()
+        await models.Game.destroy({
+            where: {
+                id: gameId
+            }
+        })
         return Promise.resolve(true)
     } catch (err) {
         log('验证参数错误', err.message)

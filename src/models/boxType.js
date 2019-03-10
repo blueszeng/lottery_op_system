@@ -11,6 +11,11 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             comment: "名称",
         },
+        level: {
+            notEmpty: true,
+            type: DataTypes.STRING,
+            comment: "宝箱等级可用于排序显示",
+        },
         big_py_buy_times: {
             notEmpty: true,
             type: DataTypes.INTEGER,
@@ -41,7 +46,6 @@ export default (sequelize, DataTypes) => {
     // 添加一个类级别的方法
     BoxType.associate = function(models) {
         models.BoxType.hasMany(models.Box, { foreignKey: 'box_type_id', targetKey: 'id' });
-        models.Box.belongsTo(models.BoxType);
     }
     return BoxType
 }

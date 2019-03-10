@@ -9,7 +9,6 @@ import $ from 'jquery'
 (async function main() {
     $('#article_update_submit').click(async(event) => {
         /* Act on the event */
-        // {"mane":1}
         let data = {
             gameId: $('#game_id').val(),
             img: $('#img_id').val(),

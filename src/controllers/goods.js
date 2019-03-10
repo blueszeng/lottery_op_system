@@ -8,19 +8,40 @@ import debug from '../utils/debug'
 const log = debug(__filename)
 
 
+
+
+
 /**
  * 主页面
  * @param {*} ctx 
  * @param {*} next 
  */
-const listPage = async(ctx, next) => {
+const goodsTypeListPage = async(ctx, next) => {
     let offset = ctx.query.offset || 0
     let limit = ctx.query.limit || 10
-    let games = await models.Game.findAll({ offset, limit })
+    let goodsTypes = await models.GoodsType.findAll({ offset, limit })
     await ctx.render('goods/goodsType/list', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
-        games: games
+        goodsTypes
+    })
+}
+const goodsModelListPage = async(ctx, next) => {
+    let offset = ctx.query.offset || 0
+    let limit = ctx.query.limit || 10
+    let goodsModels = await models.GoodsModel.findAll({
+            attributes: ['id', 'name'],
+            include: [{
+                model: models.GoodsType,
+                attributes: ['name'],
+            }]
+        })
+        // console.log(JSON.stringify(goodsModels, null, 2))
+
+    await ctx.render('goods/goodsModel/list', {
+        sysStatus: ctx.query.sysStatus,
+        sysMsg: ctx.query.sysMsg,
+        goodsModels
     })
 }
 
@@ -30,18 +51,18 @@ const listPage = async(ctx, next) => {
  * @param {*} ctx 
  * @param {*} next 
  */
-const editPage = async(ctx, next) => {
+const goodsTypeEditPage = async(ctx, next) => {
     let { query } = ctx.request
     const validateSchema = Joi.object().keys({
-        gameId: Joi.number().required().label('游戏id'),
+        goodsTypeId: Joi.number().required().label('游戏id'),
     })
     try {
-        const { gameId } = await validate(query, validateSchema)
-        const game = await models.Game.findById(gameId)
-        await ctx.render('game/edit', {
+        const { goodsTypeId } = await validate(query, validateSchema)
+        const goodsType = await models.GoodsType.findById(goodsTypeId)
+        await ctx.render('goods/goodsType/edit', {
             sysStatus: ctx.query.sysStatus,
             sysMsg: ctx.query.sysMsg,
-            game
+            goodsType
         })
     } catch (err) {
         log('验证参数错误', err.message)
@@ -49,17 +70,65 @@ const editPage = async(ctx, next) => {
             sysStatus: 'error',
             sysMsg: escape(err.message)
         }
-        return ctx.redirect(`/game/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+        return ctx.redirect(`goods/goodsType/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
     }
 }
+
+const goodsModelEditPage = async(ctx, next) => {
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        goodsModelId: Joi.number().required().label('物品型号id'),
+    })
+    try {
+        const { goodsModelId } = await validate(query, validateSchema)
+        let goodsModel = await models.GoodsModel.findOne({
+            attributes: ['id', 'name'],
+            include: [{
+                model: models.GoodsType,
+                attributes: ['id', 'name'],
+            }],
+            where: { id: goodsModelId }
+        })
+        let goodsTypes = await models.GoodsType.findAll({
+            attributes: ['id', 'name']
+        })
+        console.log(JSON.stringify(goodsModel, null, 2))
+        await ctx.render('goods/goodsModel/edit', {
+            sysStatus: ctx.query.sysStatus,
+            sysMsg: ctx.query.sysMsg,
+            goodsModel,
+            goodsTypes
+        })
+    } catch (err) {
+        log('验证参数错误', err.message)
+        const locals = {
+            sysStatus: 'error',
+            sysMsg: escape(err.message)
+        }
+        return ctx.redirect(`goods/goodsType/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    }
+}
+
+
+
 
 /**
  * 添加页面
  * @param {*} ctx 
  * @param {*} next 
  */
-const addPage = async(ctx, next) => {
+const goodsTypeAddPage = async(ctx, next) => {
     await ctx.render('goods/goodsType/add', { sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
+}
+const goodsModelAddPage = async(ctx, next) => {
+    let goodsTypes = await models.GoodsType.findAll({
+        attributes: ['id', 'name']
+    })
+    await ctx.render('goods/goodsModel/add', {
+        sysStatus: ctx.query.sysStatus,
+        sysMsg: ctx.query.sysMsg,
+        goodsTypes
+    })
 }
 
 /**
@@ -67,13 +136,11 @@ const addPage = async(ctx, next) => {
  * @param {*} ctx 
  * @param {*} next 
  */
-const add = async(ctx, next) => {
+const goodsTypeAdd = async(ctx, next) => {
     const body = ctx.request.body
         // 参数验证
     const schema = Joi.object().keys({
-        img: Joi.string().required().label('图片'),
         name: Joi.string().required().label('名称'),
-        config: Joi.string().required().label('区配置')
     })
     try {
         await validate(body, schema)
@@ -82,7 +149,7 @@ const add = async(ctx, next) => {
         return Promise.reject(`验证参数出错${err.message}`)
     }
     try {
-        await models.Game.create(body)
+        await models.GoodsType.create(body)
     } catch (err) {
         log(err)
         return Promise.reject(err)
@@ -90,20 +157,12 @@ const add = async(ctx, next) => {
     return Promise.resolve(true)
 }
 
-
-/**
- * 编辑一条记录
- * @param {*} ctx 
- * @param {*} next 
- */
-const edit = async(ctx, next) => {
+const goodsModelAdd = async(ctx, next) => {
     let body = ctx.request.body
         // 参数验证
     const schema = Joi.object().keys({
-        gameId: Joi.number().required().label('游戏id'),
-        img: Joi.string().required().label('图片'),
         name: Joi.string().required().label('名称'),
-        config: Joi.string().required().label('区配置')
+        goodsTypeId: Joi.number().required().label('物品类型id'),
     })
     try {
         body = await validate(body, schema)
@@ -112,13 +171,44 @@ const edit = async(ctx, next) => {
         return Promise.reject(`验证参数出错${err.message}`)
     }
     try {
-        let game = await models.Game.findById(body.gameId)
-        game.update({
-            img: body.img,
+        await models.GoodsModel.create({
             name: body.name,
-            config: body.config,
+            goods_type_id: body.goodsTypeId
         })
-        await game.save()
+        return Promise.resolve(true)
+    } catch (err) {
+        log(err)
+        return Promise.reject(err)
+    }
+}
+
+
+/**
+ * 编辑一条记录
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+const goodsTypeEdit = async(ctx, next) => {
+    let body = ctx.request.body
+        // 参数验证
+    const schema = Joi.object().keys({
+        goodsTypeId: Joi.number().required().label('物品类型id'),
+        name: Joi.string().required().label('名称'),
+    })
+    try {
+        body = await validate(body, schema)
+    } catch (err) {
+        log(err)
+        return Promise.reject(`验证参数出错${err.message}`)
+    }
+    try {
+        await models.GoodsType.update({
+            name: body.name
+        }, {
+            where: {
+                id: body.goodsTypeId
+            }
+        })
     } catch (err) {
         log(err)
         return Promise.reject(err)
@@ -126,56 +216,94 @@ const edit = async(ctx, next) => {
     return Promise.resolve(true)
 }
 
+const goodsModelEdit = async(ctx, next) => {
+    let body = ctx.request.body
+        // 参数验证
+    const schema = Joi.object().keys({
+        goodsTypeId: Joi.number().required().label('物品类型id'),
+        goodsModelId: Joi.number().required().label('物品型号id'),
+        name: Joi.string().required().label('名称'),
+    })
+    try {
+        body = await validate(body, schema)
+    } catch (err) {
+        log(err)
+        return Promise.reject(`验证参数出错${err.message}`)
+    }
+    try {
+        await models.GoodsModel.update({
+            name: body.name,
+            goods_type_id: body.goodsTypeId
+        }, {
+            where: {
+                id: body.goodsModelId
+            }
+        })
+    } catch (err) {
+        log(err)
+        return Promise.reject(err)
+    }
+    return Promise.resolve(true)
+}
 
 /**
  * 删除一条记录
  * @param {*} ctx 
  * @param {*} next 
  */
-const del = async(ctx, next) => {
-
-}
-
-
-
-/**
- * 查询接口
- * @param {*} ctx 
- * @param {*} next 
- */
-const search = async(ctx, next) => {
-
-}
-
-
-
-//TODO: 物品型号
-
-/**
- * 物品型号列表
- * @param {*} ctx 
- * @param {*} next 
- */
-const goodModellistPage = async(ctx, next) => {
-    let offset = ctx.query.offset || 0
-    let limit = ctx.query.limit || 10
-    let games = await models.Game.findAll({ offset, limit })
-    await ctx.render('goods/goodsModel/list', {
-        sysStatus: ctx.query.sysStatus,
-        sysMsg: ctx.query.sysMsg,
-        games: games
+const goodsTypeDel = async(ctx, next) => {
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        goodsTypeId: Joi.number().required().label('物品类型id'),
     })
+    try {
+        const { goodsTypeId } = await validate(query, validateSchema)
+        await models.GoodsType.destroy({
+            where: {
+                id: goodsTypeId
+            }
+        })
+        return Promise.resolve(true)
+    } catch (err) {
+        log('验证参数错误', err.message)
+        return Promise.reject(err.message)
+    }
+}
+
+const goodsModelDel = async(ctx, next) => {
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        goodsModelId: Joi.number().required().label('物品类型id'),
+    })
+    try {
+        const { goodsModelId } = await validate(query, validateSchema)
+        await models.GoodsModel.destroy({
+            where: {
+                id: goodsModelId
+            }
+        })
+        return Promise.resolve(true)
+    } catch (err) {
+        log('验证参数错误', err.message)
+        return Promise.reject(err.message)
+    }
 }
 
 
 export default {
-    listPage,
-    editPage,
-    addPage,
-    add,
-    edit,
-    del,
-    search,
-    goodModellistPage
-    
+    //物品分类
+    goodsTypeListPage,
+    goodsTypeEditPage,
+    goodsTypeAddPage,
+    goodsTypeAdd,
+    goodsTypeEdit,
+    goodsTypeDel,
+
+    //物品模式
+    goodsModelListPage,
+    goodsModelEditPage,
+    goodsModelAddPage,
+    goodsModelAdd,
+    goodsModelEdit,
+    goodsModelDel
 }

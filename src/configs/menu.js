@@ -39,12 +39,12 @@ const menu = [{
                 'children': [{
                     'link': '#',
                     'text': '物品型号询',
-                    'dataHref': '/goods/goodsModel/goodModellistPage',
+                    'dataHref': '/goods/goodsModel/listPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }, {
                     'link': '#',
                     'text': '物品型号添加',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goodsModel/addPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }]
             },

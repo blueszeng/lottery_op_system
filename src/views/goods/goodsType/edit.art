@@ -5,20 +5,22 @@
 {{block 'head'}}
 {{/block}}
 
+
 {{block 'content'}}
 	<div class="wap-container">
+        <input value="{{goodsType.id}}" id="goodsType_id" style="display:none">
 			<div class="panel">
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型名称：</label>
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品类型名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="name" placeholder="" id="name" name="">
+                                <input type="text" class="input-text" value="{{goodsType.name}}" placeholder="" id="name" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="goodsType_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                                <button id = 'goodsType_update_submit' type="button" class="btn btn-primary"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
@@ -31,5 +33,5 @@
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-    <script type="text/javascript" src="/js/goods/goodsType/add.js"></script>
+    <script type="text/javascript" src="/js/goods/goodsType/edit.js"></script>
 {{/block}}

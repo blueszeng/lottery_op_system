@@ -1,4 +1,4 @@
-// 物品型号分类
+// 物品分类
 export default (sequelize, DataTypes) => {
     const GoodsModel = sequelize.define('GoodsModel', {
             id: {
@@ -25,7 +25,8 @@ export default (sequelize, DataTypes) => {
         })
         // 添加一个类级别的方法
     GoodsModel.associate = function(models) {
-        GoodsModel.hasMany(models.Goods, { foreignKey: 'goods_model_id', targetKey: 'id' });
+        GoodsModel.hasMany(models.Goods, { foreignKey: 'goods_model_id', targetKey: 'id' })
+        GoodsModel.belongsTo(models.GoodsType, { foreignKey: 'goods_type_id' })
     }
     return GoodsModel
 }

@@ -6,6 +6,16 @@ const URL = {
         EDIT: { url: `/game/edit`, method: 'post' },
         DEL: { url: `/game/del`, method: 'get' },
         OPEN: { url: `/game/open`, method: 'get' }
+    },
+    GOODSTYPE: {
+        ADD: { url: `/goods/goodsType/add`, method: 'post' },
+        EDIT: { url: `/goods/goodsType/edit`, method: 'post' },
+        DEL: { url: `/goods/goodsType/del`, method: 'get' }
+    },
+    GOODSMODEL: {
+        ADD: { url: `/goods/goodsModel/add`, method: 'post' },
+        EDIT: { url: `/goods/goodsModel/edit`, method: 'post' },
+        DEL: { url: `/goods/goodsModel/del`, method: 'get' }
     }
 }
 export const getServer = (type, key) => {

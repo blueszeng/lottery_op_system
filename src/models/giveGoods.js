@@ -6,6 +6,13 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        orderId: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true,
+            },
+            comment: "用户ID",
+        },
         send_uid: {
             type: DataTypes.INTEGER,
             validate: {
@@ -51,5 +58,10 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    GiveGoods.associate = function(models) {
+        models.GiveGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+    }
     return GiveGoods
 }

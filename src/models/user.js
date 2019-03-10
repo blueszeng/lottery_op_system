@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
                 comment: "头像",
             },
             name: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 validate: {
                     notEmpty: true,
                 },

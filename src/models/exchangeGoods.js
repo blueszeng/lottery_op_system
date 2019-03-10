@@ -20,6 +20,20 @@ export default (sequelize, DataTypes) => {
             },
             comment: "游戏ID",
         },
+        orderid: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true,
+            },
+            comment: "兑换订单ID",
+        },
+        game_account: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true,
+            },
+            comment: "游戏帐号",
+        },
         game_zone_info: {
             type: DataTypes.STRING,
             validate: {
@@ -57,5 +71,10 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    ExchangeGoods.associate = function(models) {
+        models.ExchangeGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+    }
     return ExchangeGoods
 }

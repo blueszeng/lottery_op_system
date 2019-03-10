@@ -31,13 +31,13 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             comment: "价格",
         },
-        open: {
-            type: DataTypes.BOOLEAN,
+        state: {
+            type: DataTypes.INTEGER,
             validate: {
                 notEmpty: true,
-                defaultValue: true
+                defaultValue: 0
             },
-            comment: "是否能打开",
+            comment: "[0不能免费打开, 1能免费打开]",
         },
         show: {
             type: DataTypes.BOOLEAN,
@@ -64,6 +64,7 @@ export default (sequelize, DataTypes) => {
             },
             foreignKey: 'box_id'
         })
+        models.Box.belongsTo(models.BoxType)
     }
     return Box
 }
