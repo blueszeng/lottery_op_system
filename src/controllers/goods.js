@@ -296,18 +296,17 @@ const goodsModeladdPage = async(ctx, next) => {
 }
 
 
+
+
+
+
+
+
 export default {
-    listPage,
-    editPage,
-    addPage,
-    add,
-    edit,
-    del,
-    search,
-    goodModellistPage,
-    goodsModeladdPage
     
-    //物品分类
+    goodsModeladdPage,
+    
+    //物品品质分类
     goodsTypeListPage,
     goodsTypeEditPage,
     goodsTypeAddPage,

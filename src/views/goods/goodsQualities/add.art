@@ -7,111 +7,29 @@
 
 {{block 'content'}}
 	<div class="wap-container">
-		<nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
-			首页
-			<span class="c-gray en">/</span>
-			物品管理
-			<span class="c-gray en">/</span>
-            物品分类
-			<span class="c-gray en">/</span>
-			新增物品类型
-			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
-		</nav>
-		<article class="Hui-admin-content clearfix">
 			<div class="panel">
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品质名称：</label>
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="" placeholder="" id="name" name="">
-                            </div>
-                        </div>
-
-						     <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品质名称：</label>
-                            <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="" placeholder="" id="name" name="">
-                            </div>
-                        </div>
-
-                        <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏ID：</label>
-                            <div class="form-controls col-xs-8 col-sm-9">
-                                <span class="select-box">
-                                    <select class="select valid" size="1" name="city" aria-invalid="false">
-                                        <option value="" selected="">请选择游戏</option>
-                                        <option value="1">lol</option>
-                                        <option value="2">dnf</option>
-                                        <option value="3">cs</option>
-                                    </select>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2">描述备注：</label>
-                            <div class="form-controls col-xs-8 col-sm-9">
-                                <textarea id="config" cols="" rows="" class="textarea textarea-picture" placeholder="说点什么...最少输入10个字符"></textarea>
+                                <input type="text" class="input-text" value="name" placeholder="" id="name" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="article_save_submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-                                <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                                <button  id="goodsType_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
 				</div>
 			</div>
-		</article>
 	</div>
 {{/block}}
 
 {{block 'script'}}
-    // <script type="text/javascript" src="/js/login.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-
-    <script type="text/javascript" src="/js/game/add.js"></script>
-    <script type="text/javascript">
-		$(function(){
-			$('.skin-minimal input').iCheck({
-				checkboxClass: 'icheckbox-blue',
-				radioClass: 'iradio-blue',
-				increaseArea: '20%'
-			});
-
-			$(".textarea-picture").Huitextarealength({
-				minlength: 10,
-				maxlength: 500
-			});
-
-			$("#picture-datetime-start").datetimepicker({
-				format: 'yyyy-mm-dd',
-				minView: "month",
-				todayBtn:  1,
-				autoclose: 1,
-				endDate : new Date(),
-			}).on('changeDate', function(event) {
-				event.preventDefault();
-				event.stopPropagation();
-				var startTime = event.date;
-				$('#picture-datetime-end').datetimepicker('setStartDate',startTime);
-			});
-			$("#picture-datetime-end").datetimepicker({
-				format: 'yyyy-mm-dd',
-				minView: "month",
-				todayBtn:  1,
-				autoclose: 1,
-				endDate : new Date(),
-			}).on('changeDate', function(event) {
-				event.preventDefault();
-				event.stopPropagation();
-				var endTime = event.date;
-				$("#picture-datetime-start").datetimepicker('setEndDate',endTime);
-			});
-
-		});
-	</script>
+    <script type="text/javascript" src="/js/goods/goodsType/add.js"></script>
 {{/block}}

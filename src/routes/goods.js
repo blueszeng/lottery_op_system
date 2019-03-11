@@ -16,6 +16,7 @@ router.get('/goodsType/del', wrapRoute(goods.goodsTypeDel)) //删除记录
 
 
 
+
 /* 物品型号 接口 */
 router.get('/goodsModel/listPage', goods.goodsModelListPage) //物品分类列表
 router.get('/goodsModel/addPage', goods.goodsModelAddPage) //新增物品分类
@@ -25,9 +26,10 @@ router.post('/goodsModel/add', wrapRoute(goods.goodsModelAdd))
 router.post('/goodsModel/edit', wrapRoute(goods.goodsModelEdit))
 router.get('/goodsModel/del', wrapRoute(goods.goodsModelDel)) //删除记录
 
-router.get('/goodsModel/goodModellistPage', goods.goodModellistPage) //物品型号列表
 router.get('/goodsModel/goodsModeladdPage', goods.goodsModeladdPage) //物品型号列表
 
+router.get('/goodsModel/goodsTypeAddPage', goods.goodsTypeAddPage) //物品型号添加
+router.get('/goodsModel/goodsTypeListPage', goods.goodsTypeListPage) //物品型号列表
 
 
 
