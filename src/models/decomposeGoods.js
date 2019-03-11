@@ -36,11 +36,13 @@ export default (sequelize, DataTypes) => {
         },
         state: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1,
             validate: {
                 notEmpty: true,
             },
             comment: "状态",
-        }
+        },
 
     }, {
         underscored: true,
@@ -50,5 +52,10 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    DecomposeGoods.associate = function(models) {
+        models.DecomposeGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+    }
     return DecomposeGoods
 }

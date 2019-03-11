@@ -14,11 +14,14 @@ let get = async(url, data) => {
     let jsonValue = null
     try {
         let value = await fetch(url, options)
-        jsonValue = value.json()
+        jsonValue = await value.json()
+        if (jsonValue.message) {
+            return Promise.reject(new Error(`problem with request: ${jsonValue.message}`))
+        }
+        return Promise.resolve(jsonValue)
     } catch (err) {
         return Promise.reject(new Error(`problem with request: ${err.message}`))
     }
-    return Promise.resolve(jsonValue)
 }
 
 
@@ -37,13 +40,15 @@ let post = async(url, data, isJson = true) => {
     }
     let jsonValue = null
     try {
-        console.log(options)
         let value = await fetch(url, options)
-        jsonValue = value.json()
+        jsonValue = await value.json()
+        if (jsonValue.message) {
+            return Promise.reject(new Error(`problem with request: ${jsonValue.message}`))
+        }
+        return Promise.resolve(jsonValue)
     } catch (err) {
         return Promise.reject(new Error(`problem with request: ${err.message}`))
     }
-    return Promise.resolve(jsonValue)
 }
 
 export default {

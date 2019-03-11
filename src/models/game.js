@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
         img: {
             notEmpty: true,
             type: DataTypes.STRING,
-            comment: "游戏img",
+            comment: "游戏图片",
         },
         config: {
             type: DataTypes.BOOLEAN,
@@ -25,19 +25,28 @@ export default (sequelize, DataTypes) => {
         },
         show: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1,
             validate: {
                 notEmpty: true,
-                defaultValue: true
             },
             comment: "是否显示",
         },
-
     }, {
         underscored: true,
         tableName: 'games',
         charset: 'utf8mb4',
         indexes: [{ unique: true, fields: ['id'] }],
-        classMethods: {},
+        classMethods: {
+            associate: function(models) {
+                // associations can be defined here
+                Game.hasMany(models.BoxType, { foreignKey: 'game_id', targetKey: 'id' });
+                Game.hasMany(models.Goods, { foreignKey: 'game_id', targetKey: 'id' });
+                Game.hasMany(models.GoodsType, { foreignKey: 'game_id', targetKey: 'id' });
+                Game.hasMany(models.GoodsQualities, { foreignKey: 'game_id', targetKey: 'id' });
+                Game.hasMany(models.ExchangeGoods, { foreignKey: 'game_id', targetKey: 'id' });
+            }
+        },
         instanceMethods: {}
     })
 

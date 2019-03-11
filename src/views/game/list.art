@@ -16,23 +16,10 @@
 			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 		</nav>
 		<article class="Hui-admin-content clearfix">
-			<div class="panel">
-				<div class="panel-body">
-					<div class="text-c"> 日期范围：
-						<input type="text" id="search-datetime-start" class="input-text datetimepicker-input" style="width:120px;">
-						-
-						<input type="text" id="search-datetime-end" class="input-text datetimepicker-input" style="width:120px;">
-						<input type="text" name="" id="" placeholder=" 图片名称" style="width:250px" class="input-text">
-						<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜图片</button>
-					</div>
-				</div>
-			</div>
+			
 			<div class="panel mt-20">
 				<div class="panel-body">
 					<div class="clearfix">
-						<span class="f-l">
-							<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-						</span>
 						<span class="r">共有数据：<strong>{{games.length}}</strong> 条</span>
 					</div>
 					<div class="mt-20 clearfix">
@@ -60,9 +47,16 @@
                                     </td>
 									<td>{{value.config}}</td>
                                     <td>{{value.updated_at | dateFormat}}</td>
-									<td class="td-status"><span class="label label-success radius">已发布</span></td>
-                                    <td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架">下架</a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('游戏编辑','/game/editPage?gameId={{value.id}}')" href="javascript:;"
-                                            title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_dels(this,{{value.id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+
+									{{if value.show}}
+										<td class="td-status"><span class="label label-success radius">已发布</span></td>
+										<td class="td-manage"><a style="text-decoration:none" onClick="picture_stops(this, {{value.id}})" href="javascript:;" title="下架">下架</a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('游戏编辑','/game/editPage?gameId={{value.id}}')" href="javascript:;"
+										title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_dels(this,{{value.id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+									{{else}}
+										<td class="td-status"><span class="label label-defaunt radius">已下架</span></td>
+										<td class="td-manage"><a style="text-decoration:none" onClick="picture_starts(this, {{value.id}})" href="javascript:;" title="发布">发布</a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('游戏编辑','/game/editPage?gameId={{value.id}}')" href="javascript:;"
+										title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_dels(this,{{value.id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+									{{/if}}
                                 </tr>
                             	{{/each}}
 							</tbody>
@@ -75,11 +69,10 @@
 {{/block}}
 
 {{block 'script'}}
-    // <script type="text/javascript" src="/js/login.js"></script>
 	<script type="text/javascript" src="/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript" src="/static/business/js/main.js"></script>
-	<script type="text/javascript" src="/js/game/index.js"></script>
+	<script type="text/javascript" src="/js/game/list.js"></script>
     <script type="text/javascript">
         $(function() {
             runDatetimePicker();

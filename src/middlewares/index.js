@@ -63,8 +63,11 @@ const multipart = () => {
                 // 重新覆盖 file.path 属性
                 file.path = `${dir}/${fileName}`
                 let app = global.getApp()
-                app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
-                app.context.uploadpath[name] = `/upload/${dirName}/${fileName}`;
+                app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {}
+                if (!app.ipAddr) {
+                    app.ipAddr = util.getIPAdress()
+                }
+                app.context.uploadpath[name] = `http://${app.ipAddr}:3000/upload/${dirName}/${fileName}`
             }
         }
     })

@@ -21,7 +21,7 @@ export default (sequelize, DataTypes) => {
             comment: "用户ID",
         },
         goods_id: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.INTEGER,
             validate: {
                 notEmpty: true,
             },
@@ -35,5 +35,11 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+
+    // 添加一个类级别的方法
+    WinPrizePush.associate = function(models) {
+        models.WinPrizePush.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+    }
+
     return WinPrizePush
 }

@@ -6,15 +6,20 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        game_id: {
+            notEmpty: true,
+            type: DataTypes.INTEGER,
+            comment: "游戏ID",
+        },
         box_type_id: {
             notEmpty: true,
             type: DataTypes.INTEGER,
             comment: "宝箱类型ID",
         },
-        icon: {
+        img: {
             notEmpty: true,
             type: DataTypes.STRING,
-            comment: "宝箱icon",
+            comment: "宝箱img",
         },
         name: {
             notEmpty: true,
@@ -26,13 +31,13 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             comment: "价格",
         },
-        open: {
-            type: DataTypes.BOOLEAN,
+        state: {
+            type: DataTypes.INTEGER,
             validate: {
                 notEmpty: true,
-                defaultValue: true
+                defaultValue: 0
             },
-            comment: "是否能打开",
+            comment: "[0不能免费打开, 1能免费打开]",
         },
         show: {
             type: DataTypes.BOOLEAN,
@@ -59,6 +64,7 @@ export default (sequelize, DataTypes) => {
             },
             foreignKey: 'box_id'
         })
+        models.Box.belongsTo(models.BoxType)
     }
     return Box
 }

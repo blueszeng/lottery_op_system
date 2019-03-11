@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { getServerUrl } from '../configs/config'
+import { getServer } from '../configs/config'
 import http from './http'
 
 let uploadImg = ({ clikBnId, selectFileId, showId, submitId }) => {
@@ -38,10 +38,12 @@ let uploadImg = ({ clikBnId, selectFileId, showId, submitId }) => {
             console.log('上传的文件不能超过10MB')
             return false
         } else {
-            let data = new FormData($('#formUpload')[0])
+            // let data = new FormData($('#formUpload')[0])
+            var data = new FormData()
             data.append('picture', file)
             try {
-                let ret = await http.post(getServerUrl('GAME', 'UPLOAD'), data, false)
+                let serve = getServer('GAME', 'UPLOAD')
+                let ret = await http[serve.method](serve.url, data, false)
                 ret = ret.data
                 let result = ''
                 let result1 = ''

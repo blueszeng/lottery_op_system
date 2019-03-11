@@ -98,12 +98,11 @@ const add = async(ctx, next) => {
  */
 const edit = async(ctx, next) => {
     let body = ctx.request.body
-        // 参数验证
     const schema = Joi.object().keys({
-        gameId: Joi.number().required().label('游戏id'),
-        img: Joi.string().required().label('图片'),
-        name: Joi.string().required().label('名称'),
-        config: Joi.string().required().label('区配置')
+        gameId: Joi.number().required().min(1).label('游戏id'),
+        img: Joi.string().required().min(1).label('图片'),
+        name: Joi.string().required().min(1).label('名称'),
+        config: Joi.string().required().min(1).label('区配置')
     })
     try {
         body = await validate(body, schema)
@@ -112,18 +111,20 @@ const edit = async(ctx, next) => {
         return Promise.reject(`验证参数出错${err.message}`)
     }
     try {
-        let game = await models.Game.findById(body.gameId)
-        game.update({
+        await models.Game.update({
             img: body.img,
             name: body.name,
-            config: body.config,
+            config: body.config
+        }, {
+            where: {
+                id: body.gameId
+            }
         })
-        await game.save()
+        return Promise.resolve(true)
     } catch (err) {
         log(err)
         return Promise.reject(err.message)
     }
-    return Promise.resolve(true)
 }
 
 
@@ -139,9 +140,11 @@ const del = async(ctx, next) => {
     })
     try {
         const { gameId } = await validate(query, validateSchema)
-        const game = await models.Game.findById(gameId)
-        console.log(game)
-        game.destroy()
+        await models.Game.destroy({
+            where: {
+                id: gameId
+            }
+        })
         return Promise.resolve(true)
     } catch (err) {
         log('验证参数错误', err.message)
@@ -155,13 +158,43 @@ const del = async(ctx, next) => {
 // teacher.destory()
 
 
+
+
+
+/**
+ * 上下架接口
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+const open = async(ctx, next) => {
+    let { query } = ctx.request
+    const validateSchema = Joi.object().keys({
+        gameId: Joi.number().required().label('游戏id')
+    })
+    try {
+        console.log('fuck', query, query.gameId)
+        const { gameId } = await validate(query, validateSchema)
+        const game = await models.Game.findById(gameId)
+        console.log('fuck22', game.show)
+        game.update({ show: !game.show ? 1 : 0 })
+        await game.save()
+        return Promise.resolve(true)
+    } catch (err) {
+        log('验证参数错误', err.message)
+        return Promise.reject(err.message)
+    }
+}
+
+
 /**
  * 查询接口
  * @param {*} ctx 
  * @param {*} next 
  */
 const search = async(ctx, next) => {
-
+    const game = await models.Game.findById(gameId)
+    console.log(game)
+    game.destroy()
 }
 
 
@@ -173,5 +206,6 @@ export default {
     add,
     edit,
     del,
-    search
+    search,
+    open
 }

@@ -56,6 +56,11 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             comment: "兑换价格",
         },
+        sell_price: {
+            notEmpty: true,
+            type: DataTypes.INTEGER,
+            comment: "物品买出价格",
+        },
         decompose_dollar_py: {
             notEmpty: true,
             type: DataTypes.FLOAT,

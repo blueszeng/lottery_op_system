@@ -1,7 +1,7 @@
 import log from '../../modules/init'
 import http from '../../modules/http'
 import upload from '../../modules/upload'
-import { getServerUrl } from '../../configs/config'
+import { getServer } from '../../configs/config'
 import $ from 'jquery'
 
 
@@ -9,16 +9,20 @@ import $ from 'jquery'
 (async function main() {
     $('#article_update_submit').click(async(event) => {
         /* Act on the event */
-        // {"mane":1}
         let data = {
             gameId: $('#game_id').val(),
             img: $('#img_id').val(),
             name: $('#name').val(),
-            config: JSON.stringify($('#config').val())
+            config: $('#config').val()
         }
         try {
-            await http.post(getServerUrl('GAME', 'EDIT'), data)
-            layer.msg('编辑成功!', { icon: 1, time: 1000 })
+            let serve = getServer('GAME', 'EDIT')
+            let v = await http[serve.method](serve.url, data)
+            layer.msg('编辑成功!', { icon: 1, time: 500 }, function() {
+                let index = parent.layer.getFrameIndex(window.name)
+                parent.layer.close(index)
+                parent.location.reload() // 父页面刷新
+            })
         } catch (err) {
             log(err.message)
             layer.msg('编辑失败!', { icon: 1, time: 1000 })

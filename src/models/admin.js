@@ -26,15 +26,15 @@ export default (sequelize, DataTypes) => {
         tableName: 'admin_users',
         indexes: [{ unique: true, fields: ['account', 'id'] }],
         classMethods: {},
-        instanceMethods: {
-            authenticate: function(value) {
-                if (bcrypt.compareSync(value + config.salt, this.password)) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }
+        instanceMethods: {}
     })
+
+    Admin.prototype.authenticate = function(value) {
+        if (bcrypt.compareSync(value + config.salt, this.password)) {
+            return true
+        } else {
+            return false
+        }
+    }
     return Admin
 }

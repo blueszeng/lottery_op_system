@@ -45,13 +45,7 @@ export default (sequelize, DataTypes) => {
                 defaultValue: 0
             },
             comment: "充值状态",
-        },
-        // createTime: {
-        //     type: DataTypes.DATE,
-        //     validate: {
-        //         defaultValue: DataTypes.NOW
-        //     }
-        // }
+        }
     }, {
         underscored: true,
         tableName: 'orders',
@@ -60,5 +54,6 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+
     return Order
 }

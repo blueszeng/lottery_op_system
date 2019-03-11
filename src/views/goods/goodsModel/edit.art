@@ -7,27 +7,25 @@
 
 {{block 'content'}}
 	<div class="wap-container">
-		<nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
-			首页
-			<span class="c-gray en">/</span>
-			物品管理
-			<span class="c-gray en">/</span>
-            物品型号
-			<span class="c-gray en">/</span>
-			新增物品型号
-			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
-		</nav>
+        <input value="{{goodsModel.id}}" id="goodsModel_id" style="display:none">
 		<article class="Hui-admin-content clearfix">
 			<div class="panel">
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品型号：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+                                <input type="text" class="input-text" value="{{goodsModel.name}}" placeholder="" id="name" name="">
+                            </div>
+                        </div>
+
                        <div class="row clearfix">
 								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品类型：</label>
 								<div class="form-controls col-xs-8 col-sm-9">
 									<span class="select-box">
 										<select id="goodsTypeId" class="select">
 											{{each goodsTypes as value index}}
-												{{if index == 0}}
+												{{if goodsModel.GoodsType.id == value.id}}
 													<option value="{{value.id}}" selected>{{value.name}}</option>
 												{{else}}
 													<option value="{{value.id}}">{{value.name}}</option>
@@ -37,15 +35,9 @@
 									</span>
 								</div>
                         </div>
-						<div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品型号：</label>
-                            <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="name" placeholder="" id="name" name="">
-                            </div>
-                        </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="goodsModel_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                                <button  id="goodsModel_update_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
@@ -59,5 +51,6 @@
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-	<script type="text/javascript" src="/js/goods/goodsModel/add.js"></script>
+    <script type="text/javascript" src="/js/goods/goodsModel/edit.js"></script>
+
 {{/block}}
