@@ -53,7 +53,7 @@ const menu = [{
                 }, {
                     'link': '#',
                     'text': '物品型号添加',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goodsModel/goodsModeladdPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }]
             },

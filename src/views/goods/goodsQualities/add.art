@@ -22,21 +22,28 @@
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>型号名称：</label>
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品质名称：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+                                <input type="text" class="input-text" value="" placeholder="" id="name" name="">
+                            </div>
+                        </div>
+
+						     <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品质名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
                                 <input type="text" class="input-text" value="" placeholder="" id="name" name="">
                             </div>
                         </div>
 
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>道具ID：</label>
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏ID：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
                                 <span class="select-box">
                                     <select class="select valid" size="1" name="city" aria-invalid="false">
-                                        <option value="" selected="">请选择道具</option>
-                                        <option value="1">步枪</option>
-                                        <option value="2">头盔</option>
-                                        <option value="3">尼泊尔</option>
+                                        <option value="" selected="">请选择游戏</option>
+                                        <option value="1">lol</option>
+                                        <option value="2">dnf</option>
+                                        <option value="3">cs</option>
                                     </select>
                                 </span>
                             </div>

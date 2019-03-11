@@ -1,4 +1,5 @@
 // 物品品质
+
 export default (sequelize, DataTypes) => {
     const GoodsQualities = sequelize.define('GoodsQualities', {
         id: {

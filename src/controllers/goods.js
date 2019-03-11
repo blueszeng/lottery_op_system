@@ -167,6 +167,15 @@ const goodModellistPage = async(ctx, next) => {
     })
 }
 
+/**
+ * 物品型号添加页面
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+const goodsModeladdPage = async(ctx, next) => {
+    await ctx.render('goods/goodsModel/add', { sysStatus: ctx.query.sysStatus, sysMsg: ctx.query.sysMsg })
+}
+
 
 export default {
     listPage,
@@ -176,6 +185,7 @@ export default {
     edit,
     del,
     search,
-    goodModellistPage
+    goodModellistPage,
+    goodsModeladdPage
     
 }
