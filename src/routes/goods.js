@@ -16,6 +16,7 @@ router.get('/goodsType/del', wrapRoute(goods.goodsTypeDel)) //删除记录
 
 
 
+
 /* 物品型号 接口 */
 router.get('/goodsModel/listPage', goods.goodsModelListPage) //物品分类列表
 router.get('/goodsModel/addPage', goods.goodsModelAddPage) //新增物品分类

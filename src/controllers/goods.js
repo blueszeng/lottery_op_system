@@ -231,7 +231,7 @@ const goodsQualitiesEditPage = async(ctx, next) => {
     try {
         const { goodsQualitiesId } = await validate(query, validateSchema)
         const goodsQualities = await models.GoodsQualities.findById(goodsQualitiesId)
-        await ctx.render('goods/goodsQualities/edit', {
+        await ctx.render('goods/goodsQualities/edit', {
             sysStatus: ctx.query.sysStatus,
             sysMsg: ctx.query.sysMsg,
             goodsQualities
