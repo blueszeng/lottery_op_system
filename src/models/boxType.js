@@ -16,19 +16,15 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             comment: "宝箱等级可用于排序显示",
         },
-        big_py_buy_times: {
-            notEmpty: true,
-            type: DataTypes.INTEGER,
-            comment: "大概率购买次数",
-        },
         show: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1,
             validate: {
                 notEmpty: true,
-                defaultValue: true
             },
             comment: "是否显示",
-        }
+        },
     }, {
         underscored: true,
         tableName: 'box_types',
@@ -46,6 +42,7 @@ export default (sequelize, DataTypes) => {
     // 添加一个类级别的方法
     BoxType.associate = function(models) {
         models.BoxType.hasMany(models.Box, { foreignKey: 'box_type_id', targetKey: 'id' });
+
     }
     return BoxType
 }

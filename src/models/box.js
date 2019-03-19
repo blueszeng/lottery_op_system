@@ -26,7 +26,7 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             comment: "名称",
         },
-        pirce: {
+        price: {
             notEmpty: true,
             type: DataTypes.INTEGER,
             comment: "价格",
@@ -39,7 +39,7 @@ export default (sequelize, DataTypes) => {
             },
             comment: "[0不能免费打开, 1能免费打开]",
         },
-        show: {
+        open: {
             type: DataTypes.BOOLEAN,
             validate: {
                 notEmpty: true,
@@ -64,7 +64,9 @@ export default (sequelize, DataTypes) => {
             },
             foreignKey: 'box_id'
         })
-        models.Box.belongsTo(models.BoxType)
+
+        Box.belongsTo(models.Game)
+        Box.belongsTo(models.BoxType, { foreignKey: 'box_type_id' })
     }
     return Box
 }

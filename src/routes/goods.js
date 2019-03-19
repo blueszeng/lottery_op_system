@@ -25,10 +25,26 @@ router.post('/goodsModel/add', wrapRoute(goods.goodsModelAdd))
 router.post('/goodsModel/edit', wrapRoute(goods.goodsModelEdit))
 router.get('/goodsModel/del', wrapRoute(goods.goodsModelDel)) //删除记录
 
-router.get('/goodsModel/goodModellistPage', goods.goodModellistPage) //物品型号列表
-router.get('/goodsModel/goodsModeladdPage', goods.goodsModeladdPage) //物品型号列表
+
+/* 物品品质 接口 */
+router.get('/goodsQualities/listPage', goods.goodsQualitiesListPage) //物品分类列表
+router.get('/goodsQualities/addPage', goods.goodsQualitiesAddPage) //新增物品分类
+router.get('/goodsQualities/editPage', goods.goodsQualitiesEditPage) //新增物品分类
+
+router.post('/goodsQualities/add', wrapRoute(goods.goodsQualitiesAdd))
+router.post('/goodsQualities/edit', wrapRoute(goods.goodsQualitiesEdit))
+router.get('/goodsQualities/del', wrapRoute(goods.goodsQualitiesDel)) //删除记录
 
 
+
+/* 物品 接口 */
+router.get('/goods/listPage', goods.goodsListPage) //物品分类列表
+router.get('/goods/addPage', goods.goodsAddPage) //新增物品分类
+router.get('/goods/editPage', goods.goodsEditPage) //编辑物品分类
+
+router.post('/goods/add', wrapRoute(goods.goodsAdd))
+router.post('/goods/edit', wrapRoute(goods.goodsEdit))
+router.get('/goods/del', wrapRoute(goods.goodsDel)) //删除记录
 
 
 module.exports = router

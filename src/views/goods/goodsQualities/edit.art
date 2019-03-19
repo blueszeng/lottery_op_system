@@ -1,4 +1,4 @@
-{{extend '../base/iframe.art'}}
+{{extend '../../base/iframe.art'}}
 
 {{block 'title'}}login{{/block}}</title>
 
@@ -7,42 +7,35 @@
 
 {{block 'content'}}
 	<div class="wap-container">
-		<article class="Hui-admin-content clearfix">
+            <input value="{{goodsQualities.id}}" id="goodsQualitiesId" style="display:none">
 			<div class="panel">
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
-                        <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏名称：</label>
+                    	<div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品品质名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-                                <input type="text" class="input-text" value="" placeholder="" id="name" name="">
+                                <input type="text" class="input-text" value="{{goodsQualities.name}}" placeholder="" id="name" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2">img来源：</label>
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>img来源：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
 									<input type="button" class="btn btn-default radius" value="上传图片" id="changeUpload" name="">  <!-- 点击触发选择控件更改事件 -->
 									<p><input type="file" id="upload" name="" style="display:none"/></p> <!--选择按钮 可修改id -->
 								<!-- result 为要显示图片的id 可修改 -->
-								<div id="result"></div>
+								<div id="result"><img src="{{goodsQualities.img}}" width="100"></div>
 								<!-- img 为要显示传到后端的图片 可修改 -->
-								<div id="img"></div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2">兑换区配置：</label>
-                            <div class="form-controls col-xs-8 col-sm-9">
-                                <textarea id="config" cols="" rows="" class="textarea textarea-picture" placeholder="说点什么...最少输入10个字符"></textarea>
+								<div id="img"><input value="{{goodsQualities.img}}" id="img_id" style="display:none"></div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="article_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                                <button  id="goodsQualities_update_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
 				</div>
 			</div>
-		</article>
 	</div>
 {{/block}}
 
@@ -50,6 +43,6 @@
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-
-    <script type="text/javascript" src="/js/game/add.js"></script>
+    <script type="text/javascript" src="/js/goods/goodsQualities/edit.js"></script>
 {{/block}}
+

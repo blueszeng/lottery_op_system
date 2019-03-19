@@ -43,7 +43,7 @@
                                     <td>{{value.id}}</td>
                                     <td>{{value.name}}</td>
                                     <td>
-                                        <a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="100" class="picture-thumb" src={{value.img}}></a>
+                                        <a href="javascript:;"><img width="100" class="picture-thumb" src={{value.img}}></a>
                                     </td>
 									<td>{{value.config}}</td>
                                     <td>{{value.updated_at | dateFormat}}</td>
@@ -74,9 +74,7 @@
     <script type="text/javascript" src="/static/business/js/main.js"></script>
 	<script type="text/javascript" src="/js/game/list.js"></script>
     <script type="text/javascript">
-        $(function() {
-            runDatetimePicker();
-            /* =====列表页的业务脚本可参考article-list.html 这个页面 ====== */
-        });
+        $('.table-sort').dataTable({
+    	})
     </script>
 {{/block}}

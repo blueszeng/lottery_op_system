@@ -7,10 +7,6 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        game_id: {
-            type: DataTypes.INTEGER,
-            comment: "游戏ID",
-        },
         img: {
             notEmpty: true,
             type: DataTypes.STRING,

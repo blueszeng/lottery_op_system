@@ -1,0 +1,85 @@
+{{extend '../../base/iframe.art'}}
+
+{{block 'title'}}login{{/block}}</title>
+
+{{block 'head'}}
+{{/block}}
+
+{{block 'content'}}
+	<div class="wap-container">
+            <input value="{{box.id}}" id="boxId" style="display:none">
+			<div class="panel">
+				<div class="panel-body">
+                    <form class="form form-horizontal" id="form-article-add">
+                     <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏类型：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="gameId" class="select">
+											{{each games as value index}}
+												{{if box.game_id == value.id}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                     </div>
+                     <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>宝箱类型：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="boxTypeId" class="select">
+											{{each boxTypes as value index}}
+												{{if box.box_type_id == value.id}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                        </div>
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>宝箱名称：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+                                <input type="text" class="input-text" value="{{box.name}}" placeholder="" id="name" name="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>宝箱价格：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+                                <input type="text" class="input-text" value="{{box.price}}" placeholder="" id="price" name="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>img来源：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+									<input type="button" class="btn btn-default radius" value="上传图片" id="changeUpload" name="">  <!-- 点击触发选择控件更改事件 -->
+									<p><input type="file" id="upload" name="" style="display:none"/></p> <!--选择按钮 可修改id -->
+								<!-- result 为要显示图片的id 可修改 -->
+								<div id="result"><img src="{{box.img}}" width="100"></div>
+								<!-- img 为要显示传到后端的图片 可修改 -->
+								<div id="img"><input value="{{box.img}}" id="img_id" style="display:none"></div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                                <button  id="box_update_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+			</div>
+	</div>
+{{/block}}
+
+{{block 'script'}}
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+    <script type="text/javascript" src="/js/box/box/edit.js"></script>
+{{/block}}

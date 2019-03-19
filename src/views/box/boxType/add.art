@@ -7,38 +7,24 @@
 
 {{block 'content'}}
 	<div class="wap-container">
-         <nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
-			首页
-			<span class="c-gray en">/</span>
-			物品管理
-			<span class="c-gray en">/</span>
-			物品品质
-			<span class="c-gray en">/</span>
-			新增物品品质
-		</nav>
 			<div class="panel">
 				<div class="panel-body">
                     <form class="form form-horizontal" id="form-article-add">
-                    	<div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品品质名称：</label>
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型名称：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
                                 <input type="text" class="input-text" value="" placeholder="" id="name" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>img来源：</label>
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型级别：</label>
                             <div class="form-controls col-xs-8 col-sm-9">
-									<input type="button" class="btn btn-default radius" value="上传图片" id="changeUpload" name="">  <!-- 点击触发选择控件更改事件 -->
-									<p><input type="file" id="upload" name="" style="display:none"/></p> <!--选择按钮 可修改id -->
-								<!-- result 为要显示图片的id 可修改 -->
-								<div id="result"></div>
-								<!-- img 为要显示传到后端的图片 可修改 -->
-								<div id="img"></div>
+                                <input type="text" class="input-text" value="" placeholder="" id="level" name="">
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                                <button  id="goodsQualities_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                                <button  id="boxType_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
                             </div>
                         </div>
                     </form>
@@ -51,6 +37,5 @@
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-    <script type="text/javascript" src="/js/goods/goodsQualities/add.js"></script>
+    <script type="text/javascript" src="/js/box/boxType/add.js"></script>
 {{/block}}
-

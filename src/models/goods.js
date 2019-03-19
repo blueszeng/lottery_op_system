@@ -41,16 +41,6 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             comment: "描述",
         },
-        min_cost_price: {
-            notEmpty: true,
-            type: DataTypes.INTEGER,
-            comment: "幸运抽奖最小消耗",
-        },
-        max_cost_price: {
-            notEmpty: true,
-            type: DataTypes.INTEGER,
-            comment: "幸运抽奖最大消耗",
-        },
         exchange_price: {
             notEmpty: true,
             type: DataTypes.INTEGER,
@@ -60,16 +50,6 @@ export default (sequelize, DataTypes) => {
             notEmpty: true,
             type: DataTypes.INTEGER,
             comment: "物品买出价格",
-        },
-        decompose_dollar_py: {
-            notEmpty: true,
-            type: DataTypes.FLOAT,
-            comment: "分解美元比率",
-        },
-        decompose_exchange_py: {
-            notEmpty: true,
-            type: DataTypes.FLOAT,
-            comment: "分解兑换币比率",
         },
         show: {
             type: DataTypes.BOOLEAN,
@@ -95,10 +75,17 @@ export default (sequelize, DataTypes) => {
             },
             foreignKey: 'goods_id'
         })
+
+
         Goods.hasMany(models.DecomposeGoods, { foreignKey: 'goods_id', targetKey: 'id' })
         Goods.hasMany(models.ExchangeGoods, { foreignKey: 'goods_id', targetKey: 'id' })
         Goods.hasMany(models.GiveGoods, { foreignKey: 'goods_id', targetKey: 'id' })
         Goods.hasMany(models.UserGoods, { foreignKey: 'goods_id', targetKey: 'id' })
+
+        Goods.belongsTo(models.Game, { foreignKey: 'game_id' })
+        Goods.belongsTo(models.GoodsModel, { foreignKey: 'goods_model_id' })
+        Goods.belongsTo(models.GoodsQualities, { foreignKey: 'goods_qualities_id' })
+
     }
     return Goods
 }

@@ -41,5 +41,12 @@ export default (sequelize, DataTypes) => {
         },
         instanceMethods: {}
     })
+
+    BoxGoods.associate = function(models) {
+        BoxGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+        BoxGoods.belongsTo(models.Box, { foreignKey: 'box_id' })
+    }
+
+
     return BoxGoods
 }

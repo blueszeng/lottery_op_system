@@ -1,0 +1,165 @@
+{{extend '../../base/iframe.art'}}
+
+{{block 'title'}}login{{/block}}</title>
+
+{{block 'head'}}
+<link rel="stylesheet" type="text/css" href="/lib/kkpager_blue.css" />
+{{/block}}
+
+{{block 'content'}}
+	<div class="wap-container">
+		<nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
+			首页
+			<span class="c-gray en">/</span>
+			物品管理
+			<span class="c-gray en">/</span>
+			物品
+			<span class="c-gray en">/</span>
+			物品查询
+			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+		</nav>
+		<article class="Hui-admin-content clearfix">
+             <div class="panel">
+                <div class="panel-body">
+                    <div class="text-c">
+                        <form class="Huiform" method="post" action="" target="_self">
+                            <span style="width:100px">游戏：</span>
+                            <span class="select-box" style="width:100px">
+                            <select id="gameId" name="" class="select">
+                                {{if gameId == 0}}
+                                    <option value="0" selected>全部游戏</option>
+                                {{/if}}
+                                {{each games as value index}}
+                                    {{if gameId == value.id}}
+                                        <option value="{{value.id}}" selected>{{value.name}}</option>
+                                    {{else}}
+                                        <option value="{{value.id}}">{{value.name}}</option>
+                                    {{/if}}
+                                {{/each}}
+                            </select></span>
+                            <span style="width:100px">物品类型：</span>
+                            <span class="select-box" style="width:100px">
+                            <select id="goodsTypeId" name="" class="select">
+                                {{if goodsTypeId == 0}}
+                                    <option value="0" selected>全部类型</option>
+                                {{/if}}
+                                {{each goodsTypes as value index}}
+                                    {{if goodsTypeId == value.id}}
+                                        <option value="{{value.id}}" selected>{{value.name}}</option>
+                                    {{else}}
+                                        <option value="{{value.id}}">{{value.name}}</option>
+                                    {{/if}}
+                                {{/each}}
+                            </select></span>
+                            <span style="width:100px">物品型号：</span>
+                            <span class="select-box" style="width:100px">
+                            <select id="goodsModelId" name="" class="select">
+                                {{if goodsModelId == 0}}
+                                    <option value="0" selected>全部型号</option>
+                                {{/if}}
+                                {{each goodsModels as value index}}
+                                    {{if goodsModelId == value.id}}
+                                        <option value="{{value.id}}" selected>{{value.name}}</option>
+                                    {{else}}
+                                        <option value="{{value.id}}">{{value.name}}</option>
+                                    {{/if}}
+                                {{/each}}
+                            </select></span>
+                            <span style="width:100px">物品品质：</span>
+                            <span class="select-box" style="width:100px">
+                            <select id="goodsQualitiesId" name="" class="select">
+                                {{if goodsQualitiesId == 0}}
+                                    <option value="0" selected>全部品质</option>
+                                {{/if}}
+                                {{each goodsQualities as value index}}
+                                    {{if goodsQualitiesId == value.id}}
+                                        <option value="{{value.id}}" selected>{{value.name}}</option>
+                                    {{else}}
+                                        <option value="{{value.id}}">{{value.name}}</option>
+                                    {{/if}}
+                                {{/each}}
+                            </select></span>
+                            
+                            </span><button type="button" class="btn btn-success" id="search" name="">搜索</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+			<div class="panel mt-20">
+				<div class="panel-body">
+					<div class="clearfix">
+						<span class="r">共有数据：<strong>{{count}}</strong> 条</span>
+					</div>
+					<div class="mt-20 clearfix">
+						<table class="table table-border table-bordered table-bg table-hover table-sort">
+							<thead>
+								<tr class="text-c">
+                                    <th width="40"><input name="" type="checkbox" value=""></th>
+                                    <th width="80">物品ID</th>
+                                    <th width="100">游戏类型</th>
+                                    <th width="100">型号</th>
+                                    <th width="100">品质</th>
+                                    <th width="100">名称</th>
+                                    <th width="100">皮肤名称</th>
+                                    <th width="100">图片</th>
+                                    <th width="100">价格</th>
+                                    <th width="100">兑换价格</th>
+                                    <th width="150">更新时间</th>
+                                    <th width="100">操作</th>
+                                </tr>
+							</thead>
+							<tbody>
+								{{each goods as value index}}
+                                 <tr class="text-c">
+                                    <td><input name="" type="checkbox" value=""></td>
+                                    <td>{{value.id}}</td>
+                                    <td>{{value.Game.name}}</td>
+                                    <td>{{value.GoodsModel.name}}</td>
+                                    <td>{{value.GoodsQuality.name}}</td>
+                                    <td>{{value.name}}</td> 
+                                    <td>{{value.skin_name}}</td> 
+                                    <td>
+                                        <a href="javascript:;"><img width="100" class="picture-thumb" src={{value.img}}></a>
+                                    </td>
+                                    <td>{{value.sell_price}}</td>
+                                    <td>{{value.exchange_price}}</td>
+                                    <td>{{value.updated_at | dateFormat}}</td>
+                                    <td class="td-manage"> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('物品编辑','editPage?goodsId={{value.id}}', '800px', '600px')" href="javascript:;"
+                                            title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="goods_del(this, {{value.id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                </tr>
+                            	{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+                        <div id="kkpager"></div>
+			</div>
+            
+		</article>
+	</div>
+{{/block}}
+
+{{block 'script'}}
+	<script type="text/javascript" src="/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="/static/business/js/main.js"></script>
+    <script type="text/javascript" src="/lib/kkpager.min.js"></script>
+    <script type="text/javascript" src="/js/goods/goods/list.js"></script>
+    <script type="text/javascript">
+
+
+  
+    let tempPage = {{count / limit}}
+    if ({{count % limit > 0}}) {
+        tempPage += 1
+    }
+    let data = {
+        totalPage: tempPage ,
+        totalRecords: {{count}},
+        pageNo: {{page}},
+        url: '/goods/goods/listPage',
+        data: ['gameId', 'goodsModelId', 'goodsQualitiesId', 'goodsTypeId']
+    }
+    pagination(data)
+    </script>
+{{/block}}

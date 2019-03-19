@@ -16,6 +16,28 @@ const URL = {
         ADD: { url: `/goods/goodsModel/add`, method: 'post' },
         EDIT: { url: `/goods/goodsModel/edit`, method: 'post' },
         DEL: { url: `/goods/goodsModel/del`, method: 'get' }
+    },
+    GOODSQUALITIES: {
+        ADD: { url: `/goods/goodsQualities/add`, method: 'post' },
+        EDIT: { url: `/goods/goodsQualities/edit`, method: 'post' },
+        DEL: { url: `/goods/goodsQualities/del`, method: 'get' }
+    },
+    GOODS: {
+        ADD: { url: `/goods/goods/add`, method: 'post' },
+        EDIT: { url: `/goods/goods/edit`, method: 'post' },
+        DEL: { url: `/goods/goods/del`, method: 'get' },
+        SEARCH: { url: `/goods/goods/listPage`, method: 'get' }
+    },
+    BOXTYPE: {
+        ADD: { url: `/box/boxType/add`, method: 'post' },
+        EDIT: { url: `/box/boxType/edit`, method: 'post' },
+        DEL: { url: `/box/boxType/del`, method: 'get' }
+    },
+    BOX: {
+        ADD: { url: `/box/box/add`, method: 'post' },
+        EDIT: { url: `/box/box/edit`, method: 'post' },
+        DEL: { url: `/box/box/del`, method: 'get' },
+        SEARCH: { url: `/box/box/listPage`, method: 'get' }
     }
 }
 export const getServer = (type, key) => {

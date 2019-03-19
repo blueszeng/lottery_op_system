@@ -202,12 +202,18 @@ function picture_shenqing(obj, id) {
 }
 
 /*图片-编辑*/
-function picture_edit(title, url, id) {
+function picture_edit(title, url, width, heigth) {
+    if (width == undefined) {
+        width = '800px'
+    }
+    if (heigth == undefined) {
+        heigth = '450px'
+    }
     var index = layer.open({
         type: 2,
         title: title,
         content: url,
-        area: ['800px', '450px']
+        area: [width, heigth]
     });
 
     // layer.full(index);

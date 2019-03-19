@@ -53,12 +53,12 @@ const menu = [{
                 'children': [{
                     'link': '#',
                     'text': '物品品质号询',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goodsQualities/listPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }, {
                     'link': '#',
                     'text': '物品品质添加',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goodsQualities/addPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }]
             },
@@ -67,12 +67,12 @@ const menu = [{
                 'children': [{
                     'link': '#',
                     'text': '物品查询',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goods/listPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }, {
                     'link': '#',
                     'text': '物品添加',
-                    'dataHref': 'game/addPage',
+                    'dataHref': '/goods/goods/addPage',
                     'onclick': 'Hui_admin_tab(this)'
                 }]
             }
@@ -95,6 +95,53 @@ const menu = [{
             //     'onclick': 'Hui_admin_tab(this)'
             // },
 
+        ]
+    },
+    {
+        'id': 'menu-article',
+        'text': '宝箱管理',
+        'icon': '&#xe616',
+        'children': [{
+                'text': '宝箱分类',
+                'children': [{
+                    'link': '#',
+                    'text': '宝箱分类查询',
+                    'dataHref': '/box/boxType/listPage',
+                    'onclick': 'Hui_admin_tab(this)'
+                }, {
+                    'link': '#',
+                    'text': '宝箱分类添加',
+                    'dataHref': '/box/boxType/addPage',
+                    'onclick': 'Hui_admin_tab(this)'
+                }]
+            }, {
+                'text': '宝箱',
+                'children': [{
+                    'link': '#',
+                    'text': '宝箱查询',
+                    'dataHref': '/box/box/listPage',
+                    'onclick': 'Hui_admin_tab(this)'
+                }, {
+                    'link': '#',
+                    'text': '宝箱添加',
+                    'dataHref': '/box/box/addPage',
+                    'onclick': 'Hui_admin_tab(this)'
+                }]
+            },
+            {
+                'text': '宝箱物品',
+                'children': [{
+                    'link': '#',
+                    'text': '宝箱物品查询',
+                    'dataHref': '/box/boxGoods/listPage',
+                    'onclick': 'Hui_admin_tab(this)'
+                }, {
+                    'link': '#',
+                    'text': '宝箱物品添加',
+                    'dataHref': '/box/boxGoods/addPage',
+                    'onclick': 'Hui_admin_tab(this)'
+                }]
+            }
         ]
     }
 ]

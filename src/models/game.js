@@ -52,6 +52,13 @@ export default (sequelize, DataTypes) => {
 
     // 添加一个类级别的方法
     Game.associate = function(models) {
+
+        // Game.belongsToMany(models.GoodsType, {
+        //     through: {
+        //         model: models.Goods
+        //     },
+        //     foreignKey: 'game_id'
+        // })
         Game.hasMany(models.BoxType, { foreignKey: 'game_id', targetKey: 'id' });
         Game.hasMany(models.Goods, { foreignKey: 'game_id', targetKey: 'id' });
         Game.hasMany(models.GoodsType, { foreignKey: 'game_id', targetKey: 'id' });

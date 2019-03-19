@@ -12,7 +12,8 @@
         "ENV": true,
         "FormData": true,
         "layer": true,
-        "parent": true
+        "parent": true,
+        "kkpager": true
     },
     "rules": {
         "arrow-parens": 0,
