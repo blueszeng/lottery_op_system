@@ -76,17 +76,7 @@
 
 
   
-    let tempPage = {{count / limit}}
-    if ({{count % limit > 0}}) {
-        tempPage += 1
-    }
-    let data = {
-        totalPage: tempPage ,
-        totalRecords:1,
-        pageNo: 1,
-        url: '/goods/goods/listPage',
-        data: ['gameId', 'goodsModelId', 'goodsQualitiesId', 'goodsTypeId']
-    }
+
     // pagination(data)
     </script>
 {{/block}}

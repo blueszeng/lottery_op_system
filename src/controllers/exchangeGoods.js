@@ -12,12 +12,12 @@ import debug from '../utils/debug'
  * @param {*} next 
  */
 const listPage = async(ctx, next) => {
-    console.log("==========");
-    
     let { query } = ctx.request
     let ExchangeGoods = await models.ExchangeGoods.findAll()
-    console.log("===========================================");
-    
+    console.log('===========ExchangeGoods=========================');
+    // console.log(ExchangeGoods);
+    console.log(JSON.stringify(ExchangeGoods, null, 2))
+    console.log('====================================');
     await ctx.render('ExchangeGoods/list', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
