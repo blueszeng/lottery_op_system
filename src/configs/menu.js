@@ -143,6 +143,19 @@ const menu = [{
                 }]
             }
         ]
+    },
+    {
+        'id': 'menu-article',
+        'text': '兑换管理',
+        'icon': '&#xe616',
+        'children': [{
+                'text': '兑换审核',
+                'link': '#',
+                'dataHref': '/ExchangeGoods/listPage',
+                'onclick': 'Hui_admin_tab(this)'
+              
+            }
+        ]
     }
 ]
 module.exports = menu
