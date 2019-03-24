@@ -38,7 +38,13 @@ const URL = {
         EDIT: { url: `/box/box/edit`, method: 'post' },
         DEL: { url: `/box/box/del`, method: 'get' },
         SEARCH: { url: `/box/box/listPage`, method: 'get' }
+    },
+    EXCHANG: {
+        REPULES: { url: `/exchangeGoods/repules`, method: 'get' },
+        SURE: { url: `/exchangeGoods/sure`, method: 'get' }
     }
+    
+
 }
 export const getServer = (type, key) => {
     return {
