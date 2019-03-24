@@ -153,7 +153,11 @@ const menu = [{
                 'link': '#',
                 'dataHref': '/ExchangeGoods/listPage',
                 'onclick': 'Hui_admin_tab(this)'
-              
+            },{
+                'text': '已兑换',
+                'link': '#',
+                'dataHref': '/ExchangeGoods/listTowPage',
+                'onclick': 'Hui_admin_tab(this)'
             }
         ]
     }

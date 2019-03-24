@@ -11,8 +11,8 @@ const router = Router({
 // https://github.com/demopark/sequelize-docs-Zh-CN/blob/master/querying.md 数据库orm文档
 
 /* 页面 */
-router.get('/listPage', exchangeGoods.listPage) //主页面
-
+router.get('/listPage', exchangeGoods.listPage) //兑换审核
+router.get('/listTowPage', exchangeGoods.listTowPage) //已兑换
 
 router.get('/sure', wrapRoute(exchangeGoods.sure)) //审核同意
 router.get('/repulse', wrapRoute(exchangeGoods.repulse)) //主页面

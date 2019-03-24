@@ -3,6 +3,8 @@ import generate from '../utils/menu'
 import util from '../utils/util'
 import models from '../models/index'
 import {Joi, validate} from '../utils/validator'
+import Sequelize from 'sequelize'
+const Op = Sequelize.Op
 
 import debug from '../utils/debug'
 const log = debug(__filename)
@@ -13,8 +15,6 @@ const log = debug(__filename)
  */
 const listPage = async(ctx, next) => {
     let {query} = ctx.request
-    // let ExchangeGoods = await models.ExchangeGoods.findAll() const games = await
-    // models.Game.findAll({ attributes: ['id', 'name'] })
     let ExchangeGoods = await models
         .ExchangeGoods
         .findAll({
@@ -36,15 +36,52 @@ const listPage = async(ctx, next) => {
                 state: 0
             }
         })
-    console.log(JSON.stringify(ExchangeGoods, undefined, 2))
-    console.log('====================================');
+    // console.log(JSON.stringify(ExchangeGoods, undefined, 2))
+    // console.log('====================================');
     await ctx.render('ExchangeGoods/list', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
         ExchangeGoods
     })
 }
-
+/**
+ * 已兑换
+ * @param {*} ctx
+ * @param {*} next
+ */
+const listTowPage = async(ctx, next) => {
+    let {query} = ctx.request
+    let ExchangeGoods = await models
+        .ExchangeGoods
+        .findAll({
+            include: [
+                {
+                    model: models.Game,
+                    attributes: ['id', 'name']
+                },
+                {
+                    model: models.User,
+                    attributes: ['id', 'name']
+                },
+                {
+                    model: models.Goods,
+                    attributes: ['id', 'name']
+                }
+            ],
+            where: {
+                state: {
+                    [Op.gt]: 0
+                }
+            }
+        })
+    console.log(JSON.stringify(ExchangeGoods, undefined, 2))
+    console.log('====================================');
+    await ctx.render('ExchangeGoods/listTow', {
+        sysStatus: ctx.query.sysStatus,
+        sysMsg: ctx.query.sysMsg,
+        ExchangeGoods
+    })
+}
 const sure = async(ctx, next) => {
     const query = ctx.request.query
     // 参数验证
@@ -121,5 +158,6 @@ const repulse = async(ctx, next) => {
 export default {
     listPage,
     sure,
-    repulse
+    repulse,
+    listTowPage
 }
