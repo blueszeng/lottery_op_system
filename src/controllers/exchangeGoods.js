@@ -74,8 +74,8 @@ const listTowPage = async(ctx, next) => {
                 }
             }
         })
-    console.log(JSON.stringify(ExchangeGoods, undefined, 2))
-    console.log('====================================');
+    // console.log(JSON.stringify(ExchangeGoods, undefined, 2))
+    // console.log('====================================');
     await ctx.render('ExchangeGoods/listTow', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,

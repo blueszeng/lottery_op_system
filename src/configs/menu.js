@@ -154,12 +154,23 @@ const menu = [{
                 'dataHref': '/ExchangeGoods/listPage',
                 'onclick': 'Hui_admin_tab(this)'
             },{
-                'text': '已兑换',
+                'text': '已审核',
                 'link': '#',
                 'dataHref': '/ExchangeGoods/listTowPage',
                 'onclick': 'Hui_admin_tab(this)'
             }
         ]
+    },
+    {
+        'id': 'menu-article',
+        'text': '用户管理',
+        'icon': '&#xe616',
+        'children': [{
+                'text': '用户查询',
+                'link': '#',
+                'dataHref': '/user/listPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }]
     }
 ]
 module.exports = menu
