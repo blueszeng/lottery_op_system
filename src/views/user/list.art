@@ -39,7 +39,9 @@
                                  <tr class="text-c">
                                     <td><input name="" type="checkbox" value=""></td>
                                     <td>{{value.id}}</td>
-                                    <td>{{value.head}}</td>
+                                    <td>
+                                        <a href="javascript:;"><img width="100" class="picture-thumb" src={{value.head}}></a>
+                                    </td>
                                     <td>{{value.name}}</td>
                                     <td>{{value.dollar_money}}</td>
                                     <td>{{value.exchange_money}}</td> 
