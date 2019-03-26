@@ -47,5 +47,4 @@ router.post('/goods/add', wrapRoute(goods.goodsAdd))
 router.post('/goods/edit', wrapRoute(goods.goodsEdit))
 router.get('/goods/del', wrapRoute(goods.goodsDel)) //删除记录
 
-
 module.exports = router

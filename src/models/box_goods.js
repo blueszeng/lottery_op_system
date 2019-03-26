@@ -1,4 +1,7 @@
 // 宝箱物品
+
+
+
 export default (sequelize, DataTypes) => {
     const BoxGoods = sequelize.define('BoxGoods', {
         id: {
@@ -23,12 +26,13 @@ export default (sequelize, DataTypes) => {
         },
         show: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: 1,
             validate: {
                 notEmpty: true,
-                defaultValue: true
             },
             comment: "是否显示",
-        }
+        },
     }, {
         underscored: true,
         tableName: 'box_goods',

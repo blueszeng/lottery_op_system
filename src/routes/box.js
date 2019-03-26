@@ -34,11 +34,14 @@ router.get('/boxGoods/listPage', box.boxGoodsListPage) //宝箱物品分类列�
 router.get('/boxGoods/addPage', box.boxGoodsAddPage) //新增宝箱物品分类
 router.get('/boxGoods/editPage', box.boxGoodsEditPage) //编辑宝箱物品分类
 
-// router.post('/boxGoods/add', wrapRoute(box.boxGoodsAdd))
-// router.post('/boxGoods/edit', wrapRoute(box.boxGoodsEdit))
-// router.get('/boxGoods/del', wrapRoute(box.boxGoodsDel)) //删除记录
+router.get('/boxGoods/del', wrapRoute(box.boxGoodsDel))
+router.post('/boxGoods/add', wrapRoute(box.boxGoodsAdd))
+router.post('/boxGoods/edit', wrapRoute(box.boxGoodsEdit))
+router.get('/boxGoods/del', wrapRoute(box.boxGoodsDel)) //删除记录
 
-// router.get('/box/del', box.boxSearch) //查询
+router.get('/boxGoods/boxAndGoodsTypes', wrapRoute(box.boxAndGoodsTypesByGame)) // 获得游戏中的宝箱类型,和物品类型
+router.get('/boxGoods/boxs', wrapRoute(box.boxByBoxType)) // 获得宝箱通过宝箱类型
 
-
+router.get('/boxGoods/goodsModel', wrapRoute(box.boxModelByGoodsType)) // 获得物型号通过物品类型
+router.get('/boxGoods/goods', wrapRoute(box.goodsByGoodsModelType)) // 获得物品通过物品型号
 module.exports = router

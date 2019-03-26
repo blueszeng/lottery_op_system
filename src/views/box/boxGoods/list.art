@@ -38,7 +38,7 @@
                         </select></span>
                         <span style="width:100px">宝箱类型：</span>
                         <span class="select-box" style="width:150px">
-                        <select id="boxType" name="" class="select">
+                        <select id="boxTypeId" name="" class="select">
                             {{if boxTypeId == 0}}
                                 <option value="0" selected>宝箱类型</option>
                             {{/if}}
@@ -51,7 +51,7 @@
                             {{/each}}
                         </select></span>
                         <span style="width:100px">宝箱：</span>
-                        <input type="text" class="input-text" style="width:150px" placeholder="输入宝箱名称" id="boxId" name="">
+                        <input type="text" class="input-text" style="width:150px" placeholder="输入宝箱名称" id="boxName" value="{{boxName}}">
                         <button type="button" class="btn btn-success" id="search" name="">搜索</button>
                     </div>
                 </div>
@@ -83,8 +83,8 @@
                                     <td>{{value.Good.name}}</td> 
                                     <td>{{value.drop_probability}}</td>
                                     <td>{{value.updated_at | dateFormat}}</td>
-                                    <td class="td-manage"> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('宝箱编辑','editPage?boxId={{value.id}}')" href="javascript:;"
-                                            title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="box_del(this, {{value.id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                    <td class="td-manage"> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('宝箱编辑','editPage?boxGoodsId={{value.id}}')" href="javascript:;"
+                                            title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="box_goods_del(this, {{value.id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                                 </tr>
                             	{{/each}}
 							</tbody>
@@ -92,9 +92,7 @@
 					</div>
 				</div>
                         <div id="kkpager"></div>
-                
 			</div>
-            
 		</article>
 	</div>
 {{/block}}
@@ -104,7 +102,7 @@
     <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript" src="/static/business/js/main.js"></script>
     <script type="text/javascript" src="/lib/kkpager.min.js"></script>
-    <script type="text/javascript" src="/js/box/box/list.js"></script>
+    <script type="text/javascript" src="/js/box/boxGoods/list.js"></script>
     <script type="text/javascript">
 
 

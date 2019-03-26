@@ -22,4 +22,6 @@ router.get('/del', wrapRoute(game.del)) //删除记录
 router.post('/search', game.search) //查询
 router.get('/open', wrapRoute(game.open)) //上下架
 
+
+
 module.exports = router

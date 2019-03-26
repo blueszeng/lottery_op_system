@@ -1,0 +1,140 @@
+{{extend '../../base/iframe.art'}}
+
+{{block 'title'}}login{{/block}}</title>
+
+{{block 'head'}}
+{{/block}}
+
+{{block 'content'}}
+	<div class="wap-container">
+         <nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
+		首页
+			<span class="c-gray en">/</span>
+			宝箱物品管理
+			<span class="c-gray en">/</span>
+			宝箱物品分类
+			<span class="c-gray en">/</span>
+			新增宝箱物品
+		</nav>
+			<div class="panel">
+				<div class="panel-body">
+                    <form class="form form-horizontal" id="form-article-add">
+                     <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>游戏类型：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="gameId" class="select">
+											{{each games as value index}}
+												{{if index == 0}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                     </div>
+                     <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>宝箱类型：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="boxTypeId" class="select">
+											{{each boxTypes as value index}}
+												{{if index == 0}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                        </div>
+                        <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>宝箱：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="boxId" class="select">
+											{{each boxs as value index}}
+												{{if index == 0}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                        </div>
+                         <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品类型：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="goodsTypeId" class="select">
+											{{each goodsTypes as value index}}
+												{{if index == 0}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                        </div>
+                         <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品型号：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="goodsModelId" class="select">
+											{{each goodsModels as value index}}
+												{{if index == 0}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                        </div>
+                         <div class="row clearfix">
+								<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品：</label>
+								<div class="form-controls col-xs-8 col-sm-9">
+									<span class="select-box">
+										<select id="goodsId" class="select">
+											{{each goods as value index}}
+												{{if index == 0}}
+													<option value="{{value.id}}" selected>{{value.name}}</option>
+												{{else}}
+													<option value="{{value.id}}">{{value.name}}</option>
+												{{/if}}
+											{{/each}}
+										</select>
+									</span>
+								</div>
+                        </div>
+                        <div class="row clearfix">
+                            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>物品概率：</label>
+                            <div class="form-controls col-xs-8 col-sm-9">
+                                <input type="text" class="input-text" value="" placeholder="" id="dropProbability" name="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                                <button  id="box_goods_save_submit" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 添加</button>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+			</div>
+	</div>
+{{/block}}
+
+{{block 'script'}}
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+    <script type="text/javascript" src="/js/box/boxGoods/add.js"></script>
+{{/block}}

@@ -38,6 +38,16 @@ const URL = {
         EDIT: { url: `/box/box/edit`, method: 'post' },
         DEL: { url: `/box/box/del`, method: 'get' },
         SEARCH: { url: `/box/box/listPage`, method: 'get' }
+    },
+    BOXGOODS: {
+        ADD: { url: `/box/boxGoods/add`, method: 'post' },
+        EDIT: { url: `/box/boxGoods/edit`, method: 'post' },
+        DEL: { url: `/box/boxGoods/del`, method: 'get' },
+        SEARCH: { url: `/box/boxGoods/listPage`, method: 'get' },
+        SEARCH1: { url: `/box/boxGoods/boxAndGoodsTypes`, method: 'get' },
+        SEARCH2: { url: `/box/boxGoods/boxs`, method: 'get' },
+        SEARCH3: { url: `/box/boxGoods/goodsModel`, method: 'get' },
+        SEARCH4: { url: `/box/boxGoods/goods`, method: 'get' }
     }
 }
 export const getServer = (type, key) => {

@@ -247,8 +247,6 @@ const goodsQualitiesEditPage = async(ctx, next) => {
 }
 
 
-
-
 const goodsEditPage = async(ctx, next) => {
     let { query } = ctx.request
     const validateSchema = Joi.object().keys({
