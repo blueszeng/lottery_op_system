@@ -53,6 +53,23 @@ template.defaults.imports.jsonParseon = function(value) {
 template.defaults.imports.jsonStringify = function(value) {
     return JSON.stringify(value)
 }
+template.defaults.imports.cover_state = function(value) {
+    var name=""
+    switch (value) {
+        case 1:
+            name="通过"
+            break;
+        case 2:
+            name="拒绝"
+            break;
+        default:
+            name="待处理"
+            break;
+    }
+    return name
+}
+
+
 
 
 global.getApp = () => {

@@ -1,0 +1,69 @@
+{{extend '../base/iframe.art'}}
+
+{{block 'title'}}login{{/block}}</title>
+
+{{block 'head'}}
+{{/block}}
+
+{{block 'content'}}
+	<div class="wap-container">
+		<nav class="breadcrumb" style="background-color:#fff;padding: 0 24px">
+			首页
+			<span class="c-gray en">/</span>
+			用户管理
+			<span class="c-gray en">/</span>
+			用户查询
+			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+		</nav>
+		<article class="Hui-admin-content clearfix">
+        
+			<div class="panel mt-20">
+				<div class="panel-body">
+					<div class="clearfix">
+						<span class="r">共有数据：<strong>6</strong> 条</span>
+					</div>
+					<div class="mt-20 clearfix">
+						<table class="table table-border table-bordered table-bg table-hover table-sort">
+							<thead>
+								<tr class="text-c">
+                                    <th width="40"><input name="" type="checkbox" value=""></th>
+                                    <th width="100">ID</th>
+                                    <th width="100">用户头像</th>
+                                    <th width="80">用户名称</th>
+                                    <th width="100">美元</th>
+                                    <th width="100">兑换币</th>
+                                </tr>
+							</thead>
+							<tbody>
+								{{each userArr as value index}}
+                                 <tr class="text-c">
+                                    <td><input name="" type="checkbox" value=""></td>
+                                    <td>{{value.id}}</td>
+                                    <td>
+                                        <a href="javascript:;"><img width="100" class="picture-thumb" src={{value.head}}></a>
+                                    </td>
+                                    <td>{{value.name}}</td>
+                                    <td>{{value.dollar_money}}</td>
+                                    <td>{{value.exchange_money}}</td> 
+                                </tr>
+                            	{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+            
+		</article>
+	</div>
+{{/block}}
+
+{{block 'script'}}
+	<script type="text/javascript" src="/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="/static/business/js/main.js"></script>
+    <script type="text/javascript" src="/js/exchang/list.js"></script>
+    <script type="text/javascript">
+     $('.table-sort').dataTable({
+    })
+    </script>
+{{/block}}

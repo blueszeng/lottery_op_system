@@ -29,7 +29,7 @@ export default (sequelize, DataTypes) => {
         }
     }, {
         underscored: true,
-        tableName: 'user_goods',
+        tableName: 'user_boxs',
         charset: 'utf8mb4',
         indexes: [{ unique: true, fields: ['id'] }],
         classMethods: {},

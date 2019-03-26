@@ -143,6 +143,53 @@ const menu = [{
                 }]
             }
         ]
+    },
+    {
+        'id': 'menu-article',
+        'text': '兑换管理',
+        'icon': '&#xe616',
+        'children': [{
+                'text': '兑换审核',
+                'link': '#',
+                'dataHref': '/ExchangeGoods/listPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },{
+                'text': '已审核',
+                'link': '#',
+                'dataHref': '/ExchangeGoods/listTowPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }
+        ]
+    },
+    {
+        'id': 'menu-article',
+        'text': '用户管理',
+        'icon': '&#xe616',
+        'children': [{
+                'text': '用户查询',
+                'link': '#',
+                'dataHref': '/user/listPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户充值',
+                'link': '#',
+                'dataHref': '/user/rechargeListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户宝箱',
+                'link': '#',
+                'dataHref': '/user/boxListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户物品',
+                'link': '#',
+                'dataHref': '/user/goodsListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }
+        ]
     }
 ]
 module.exports = menu

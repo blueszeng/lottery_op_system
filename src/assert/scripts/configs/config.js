@@ -48,6 +48,10 @@ const URL = {
         SEARCH2: { url: `/box/boxGoods/boxs`, method: 'get' },
         SEARCH3: { url: `/box/boxGoods/goodsModel`, method: 'get' },
         SEARCH4: { url: `/box/boxGoods/goods`, method: 'get' }
+    },
+    EXCHANG: {
+        REPULES: { url: `/exchangeGoods/repules`, method: 'get' },
+        SURE: { url: `/exchangeGoods/sure`, method: 'get' }
     }
 }
 export const getServer = (type, key) => {

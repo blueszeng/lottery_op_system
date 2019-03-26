@@ -75,6 +75,11 @@ export default (sequelize, DataTypes) => {
     // 添加一个类级别的方法
     ExchangeGoods.associate = function(models) {
         models.ExchangeGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+
+        ExchangeGoods.belongsTo(models.Game, { foreignKey: 'game_id' })
+        ExchangeGoods.belongsTo(models.User, { foreignKey: 'uid' })
+        ExchangeGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+        
     }
     return ExchangeGoods
 }
