@@ -170,7 +170,26 @@ const menu = [{
                 'link': '#',
                 'dataHref': '/user/listPage',
                 'onclick': 'Hui_admin_tab(this)'
-            }]
+            },
+            {
+                'text': '用户充值',
+                'link': '#',
+                'dataHref': '/user/rechargeListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户宝箱',
+                'link': '#',
+                'dataHref': '/user/boxListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户物品',
+                'link': '#',
+                'dataHref': '/user/goodsListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            }
+        ]
     }
 ]
 module.exports = menu

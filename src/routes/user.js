@@ -12,6 +12,11 @@ const router = Router({
 
 /* 页面 */
 router.get('/listPage', user.listPage) 
+router.get('/boxListPage', user.boxListPage) 
+router.get('/goodsListPage', user.goodsListPage) 
+router.get('/rechargeListPage', user.rechargeListPage) 
+
+
 
 
 module.exports = router
