@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
             comment: "用户ID",
         },
         box_id: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.INTEGER,
             validate: {
                 notEmpty: true,
             },
