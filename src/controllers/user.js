@@ -31,16 +31,25 @@ const listPage = async(ctx, next) => {
      */
 const boxListPage = async(ctx, next) => {
     let { query } = ctx.request
-    console.log("==========user box ===================")
-    let userArr = await models.UserBox.findAll()
-    let userBox = []
+    let userArr = await models.UserBox.findAll({
+        include: [
+            {
+                model: models.Box,
+                attributes: ['id', 'name']
+            },
+            {
+                model: models.User,
+                attributes: ['id', 'name']
+            }
+        ]
+    })
     console.log("==========user box ===================")
     console.log(JSON.stringify(userArr, undefined, 2))
     console.log('============user box ========================')
     await ctx.render('user/boxList', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
-        userBox
+        userArr
     })
 }
 
