@@ -60,9 +60,20 @@ const boxListPage = async(ctx, next) => {
  */
 const goodsListPage = async(ctx, next) => {
         let { query } = ctx.request
-        let userArr = [] //await models.User.findAll()
+        let userArr = await models.UserGoods.findAll({
+            include: [
+                {
+                    model: models.Goods,
+                    attributes: ['id', 'name']
+                },
+                {
+                    model: models.User,
+                    attributes: ['id', 'name']
+                }
+            ]
+        })
         console.log(JSON.stringify(userArr, undefined, 2))
-        console.log('============user box ========================');
+        console.log('============user goods ========================')
         await ctx.render('user/goodsList', {
             sysStatus: ctx.query.sysStatus,
             sysMsg: ctx.query.sysMsg,
@@ -92,5 +103,5 @@ export default {
     listPage,
     boxListPage,
     goodsListPage,
-    rechargeListPage,
+    rechargeListPage
 }

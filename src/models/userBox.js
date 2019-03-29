@@ -37,7 +37,7 @@ export default (sequelize, DataTypes) => {
     })
       // 添加一个类级别的方法
       UserBox.associate = function(models) {
-        models.UserBox.belongsTo(models.Box, { foreignKey: 'box_id`' })
+        models.UserBox.belongsTo(models.Box, { foreignKey: 'box_id' })
         models.UserBox.belongsTo(models.User, { foreignKey: 'uid' })
     }
     return UserBox
