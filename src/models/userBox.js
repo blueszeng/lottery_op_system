@@ -14,7 +14,7 @@ export default (sequelize, DataTypes) => {
             comment: "用户ID",
         },
         box_id: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.INTEGER,
             validate: {
                 notEmpty: true,
             },
@@ -37,7 +37,7 @@ export default (sequelize, DataTypes) => {
     })
       // 添加一个类级别的方法
       UserBox.associate = function(models) {
-        models.UserBox.belongsTo(models.Box, { foreignKey: 'box_id`' })
+        models.UserBox.belongsTo(models.Box, { foreignKey: 'box_id' })
         models.UserBox.belongsTo(models.User, { foreignKey: 'uid' })
     }
     return UserBox

@@ -73,7 +73,7 @@ const goodsListPage = async(ctx, next) => {
             ]
         })
         console.log(JSON.stringify(userArr, undefined, 2))
-        console.log('============user box ========================');
+        console.log('============user goods ========================')
         await ctx.render('user/goodsList', {
             sysStatus: ctx.query.sysStatus,
             sysMsg: ctx.query.sysMsg,
@@ -103,5 +103,5 @@ export default {
     listPage,
     boxListPage,
     goodsListPage,
-    rechargeListPage,
+    rechargeListPage
 }
