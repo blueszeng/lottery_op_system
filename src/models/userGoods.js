@@ -35,5 +35,10 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
+    // 添加一个类级别的方法
+    UserGoods.associate = function(models) {
+        models.UserGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+        UserGoods.belongsTo(models.User, { foreignKey: 'uid' })
+    }
     return UserGoods
 }
