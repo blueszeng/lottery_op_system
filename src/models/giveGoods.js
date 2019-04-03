@@ -6,12 +6,12 @@ export default (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        orderId: {
+        orderid: {
             type: DataTypes.STRING,
             validate: {
                 notEmpty: true,
             },
-            comment: "用户ID",
+            comment: "订单ID",
         },
         send_uid: {
             type: DataTypes.INTEGER,
