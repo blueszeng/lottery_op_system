@@ -149,17 +149,16 @@ const menu = [{
         'text': '兑换管理',
         'icon': '&#xe616',
         'children': [{
-                'text': '兑换审核',
-                'link': '#',
-                'dataHref': '/ExchangeGoods/listPage',
-                'onclick': 'Hui_admin_tab(this)'
-            },{
-                'text': '已审核',
-                'link': '#',
-                'dataHref': '/ExchangeGoods/listTowPage',
-                'onclick': 'Hui_admin_tab(this)'
-            }
-        ]
+            'text': '兑换审核',
+            'link': '#',
+            'dataHref': '/ExchangeGoods/listPage',
+            'onclick': 'Hui_admin_tab(this)'
+        }, {
+            'text': '已审核',
+            'link': '#',
+            'dataHref': '/ExchangeGoods/listTowPage',
+            'onclick': 'Hui_admin_tab(this)'
+        }]
     },
     {
         'id': 'menu-article',
@@ -190,6 +189,17 @@ const menu = [{
                 'onclick': 'Hui_admin_tab(this)'
             }
         ]
+    },
+    {
+        'id': 'menu-article',
+        'text': '配置管理',
+        'icon': '&#xe616',
+        'children': [{
+            'text': '修改配置',
+            'link': '#',
+            'dataHref': '/config/editPage',
+            'onclick': 'Hui_admin_tab(this)'
+        }]
     }
 ]
 module.exports = menu

@@ -1,0 +1,38 @@
+{{extend '../base/iframe.art'}}
+
+{{block 'title'}}login{{/block}}</title>
+
+{{block 'head'}}
+{{/block}}
+
+
+{{block 'content'}}
+	<div class="wap-container">
+			<div class="panel">
+				<div class="panel-body">
+                    <form class="form form-horizontal" id="form-article-add">
+                        {{each configs as value index}}
+                            <div class="row clearfix">
+                                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>{{value.discrable}}：</label>
+                                <div class="form-controls col-xs-8 col-sm-9">
+                                    <input type="text" class="input-text" value="{{value.value}}" placeholder="" id="{{value.key}}" name="{{value.discrable}}">
+                                </div>
+                            </div>
+                        {{/each}}
+                        <div class="row clearfix">
+                            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                                <button id = 'config_update_submit' type="button" class="btn btn-primary"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+			</div>
+	</div>
+{{/block}}
+
+{{block 'script'}}
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+	<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+    <script type="text/javascript" src="/js/config/edit.js"></script>
+{{/block}}

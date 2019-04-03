@@ -20,7 +20,7 @@ async function goods_exchange_sure(obj, id, state) {
 }
 
 // 审核拒绝
-async function goods_exchange_repulse(obj, id) {
+async function goods_exchange_repulse(obj, id, state) {
     layer.confirm('审核拒绝？', async function(index) {
         try {
             let data = { goodsExchangeId: id, state: state }
@@ -39,5 +39,4 @@ async function goods_exchange_repulse(obj, id) {
 (async function main() {
     console.log(goods_exchange_sure)
     console.log(goods_exchange_repulse)
-
 })()

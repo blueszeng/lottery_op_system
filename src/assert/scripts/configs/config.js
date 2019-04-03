@@ -52,7 +52,11 @@ const URL = {
     EXCHANG: {
         REPULES: { url: `/exchangeGoods/repules`, method: 'get' },
         SURE: { url: `/exchangeGoods/sure`, method: 'get' }
+    },
+    CONFIG: {
+        EDIT: { url: `/config/edit`, method: 'post' }
     }
+
 }
 export const getServer = (type, key) => {
     return {
