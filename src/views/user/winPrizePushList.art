@@ -34,15 +34,15 @@
                                 </tr>
 							</thead>
 							<tbody>  
-								// {{each userArr as value index}}
-                                //  <tr class="text-c">
-                                //     <td><input name="" type="checkbox" value=""></td>
-                                //     <td>{{value.id}}</td>
-                                //     <td>{{value.User.name}}</td>
-                                //     <td>{{value.Box.name}}</td>
-                                //     <td>{{value.box_num}}</td> 
-                                // </tr>
-                            	// {{/each}}
+								{{each userArr as value index}}
+                                 <tr class="text-c">
+                                    <td><input name="" type="checkbox" value=""></td>
+                                    <td>{{value.id}}</td>
+									<td>{{winPrizePush_type(value.type)}}</td> 
+                                    <td>{{value.User.name}}</td>
+                                    <td>{{value.Good.name}}</td>
+                                </tr>
+                            	{{/each}}
 							</tbody>
 						</table>
 					</div>

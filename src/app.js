@@ -93,6 +93,22 @@ template.defaults.imports.recharge_state = function(value) {
     return name
 }
 
+template.defaults.imports.winPrizePush_type = function(value) {
+    var name=""
+    switch (value) {
+        case 1:
+            name="开宝箱"
+            break;
+        case 2:
+            name="兑换"
+            break;
+        default:
+            name="幸运一博"
+            break;
+    }
+    return name
+}
+
 
 
 global.getApp = () => {
