@@ -27,22 +27,22 @@
 							<thead>
 								<tr class="text-c">
                                     <th width="40"><input name="" type="checkbox" value=""></th>
-                                    <th width="100">用户ID</th>
-									<th width="100">用户昵称</th>
-                                    <th width="100">宝箱名称</th>
-                                    <th width="80">宝箱数量</th>
+                                    <th width="100">ID</th>
+									<th width="100">获取类型</th>
+                                    <th width="100">用户名称</th>
+                                    <th width="80">物品名称</th>
                                 </tr>
 							</thead>
 							<tbody>  
-								// {{each userArr as value index}}
-                                //  <tr class="text-c">
-                                //     <td><input name="" type="checkbox" value=""></td>
-                                //     <td>{{value.id}}</td>
-                                //     <td>{{value.User.name}}</td>
-                                //     <td>{{value.Box.name}}</td>
-                                //     <td>{{value.box_num}}</td> 
-                                // </tr>
-                            	// {{/each}}
+								{{each userArr as value index}}
+                                 <tr class="text-c">
+                                    <td><input name="" type="checkbox" value=""></td>
+                                    <td>{{value.id}}</td>
+									<td>{{winPrizePush_type(value.type)}}</td> 
+                                    <td>{{value.User.name}}</td>
+                                    <td>{{value.Good.name}}</td>
+                                </tr>
+                            	{{/each}}
 							</tbody>
 						</table>
 					</div>

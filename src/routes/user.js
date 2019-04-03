@@ -16,7 +16,7 @@ router.get('/boxListPage', user.boxListPage)
 router.get('/goodsListPage', user.goodsListPage)
 router.get('/rechargeListPage', user.rechargeListPage)
 router.get('/winPrizePushListPage', user.winPrizePushListPage)
-
+router.get('/giveGoodsListPage', user.giveGoodsListPage)
 
 
 module.exports = router
