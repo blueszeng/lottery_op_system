@@ -63,6 +63,8 @@ export default (sequelize, DataTypes) => {
     GiveGoods.associate = function(models) {
         models.GiveGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
         models.GiveGoods.belongsTo(models.User, { foreignKey: 'send_uid' })
+        models.GiveGoods.belongsTo(models.User, { foreignKey: 'recv_uid' })
+
     }
     return GiveGoods
 }

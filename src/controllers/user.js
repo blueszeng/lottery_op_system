@@ -140,17 +140,22 @@ const giveGoodsListPage = async(ctx, next) => {
     let {
         query
     } = ctx.request
-    // let userArr = await models.GiveGoods.findAll({
-    //     include: [{
-    //         model: models.User,
-    //         attributes: ['id', 'name']
-    //     },
-    //     {
-    //         model: models.Goods,
-    //         attributes: ['id', 'name']
-    //     }]
-    // })
-    let userArr =  await models.GiveGoods.findAll({})
+    let userArr = await models.GiveGoods.findAll({
+        include: [{
+            model: models.User,
+            attributes: ['id', 'name']
+        },
+        {
+            model: models.Goods,
+            attributes: ['id', 'name']
+        },
+        {
+            model: models.User,
+            // attributes:['u',['id', 'name']] 
+            attributes: { include: [[['id', 'name'], 'no_hats']] }
+        }]
+    })
+
     console.log(JSON.stringify(userArr, undefined, 2))
     console.log('============user giveGoodsListPage ========================');
     await ctx.render('user/giveGoodsList', {
