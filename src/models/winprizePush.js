@@ -36,11 +36,11 @@ export default (sequelize, DataTypes) => {
         instanceMethods: {}
     })
 
-    // // 添加一个类级别的方法
-    // WinPrizePush.associate = function(models) {
-    //     models.WinPrizePush.belongsTo(models.Goods, { foreignKey: 'goods_id' })
-    //     models.WinPrizePush.belongsTo(models.User, { foreignKey: 'uid' })
-    // }
+    // 添加一个类级别的方法
+    WinPrizePush.associate = function(models) {
+        models.WinPrizePush.belongsTo(models.Goods, { foreignKey: 'goods_id' })
+        models.WinPrizePush.belongsTo(models.User, { foreignKey: 'uid' })
+    }
 
     return WinPrizePush
 }

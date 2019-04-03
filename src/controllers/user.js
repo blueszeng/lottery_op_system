@@ -139,12 +139,13 @@ const giveGoodsListPage = async (ctx, next) => {
     let {
         query
     } = ctx.request
-    let userArr = await models.Order.findAll({
-        include: [{
-                model: models.User,
-                attributes: ['id', 'name']
-            }]
-    })
+    let userArr = []
+    // await models.Order.findAll({
+    //     include: [{
+    //             model: models.User,
+    //             attributes: ['id', 'name']
+    //         }]
+    // })
     console.log(JSON.stringify(userArr, undefined, 2))
     console.log('============user rechargeList ========================');
     await ctx.render('user/giveGoodsList', {
