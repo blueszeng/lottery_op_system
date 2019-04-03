@@ -115,13 +115,14 @@ const winPrizePushListPage = async(ctx, next) => {
     } = ctx.request
     let userArr = await models.WinPrizePush.findAll({
         include: [{
-            model: models.User,
-            attributes: ['id', 'name']
-        },
-        {
-            model: models.Goods,
-            attributes: ['id', 'name']
-        }]
+                model: models.User,
+                attributes: ['id', 'name']
+            },
+            {
+                model: models.Goods,
+                attributes: ['id', 'name']
+            }
+        ]
     })
     await ctx.render('user/winPrizePushList', {
         sysStatus: ctx.query.sysStatus,
@@ -140,17 +141,22 @@ const giveGoodsListPage = async(ctx, next) => {
     let {
         query
     } = ctx.request
-    // let userArr = await models.GiveGoods.findAll({
-    //     include: [{
-    //         model: models.User,
-    //         attributes: ['id', 'name']
-    //     },
-    //     {
-    //         model: models.Goods,
-    //         attributes: ['id', 'name']
-    //     }]
-    // })
-    let userArr =  await models.GiveGoods.findAll({})
+    let userArr = await models.GiveGoods.findAll({
+        include: [{
+                model: models.Goods,
+                attributes: ['id', 'name']
+            },
+            {
+                model: models.User,
+                as: 'SendUser',
+                attributes: ['id', 'name']
+            }, {
+                model: models.User,
+                as: 'RecvUser',
+                attributes: ['id', 'name']
+            }
+        ]
+    })
     console.log(JSON.stringify(userArr, undefined, 2))
     console.log('============user giveGoodsListPage ========================');
     await ctx.render('user/giveGoodsList', {
