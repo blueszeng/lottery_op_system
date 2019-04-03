@@ -69,6 +69,29 @@ template.defaults.imports.cover_state = function(value) {
     return name
 }
 
+template.defaults.imports.pay_type = function(value) {
+    var name="微信"
+        if(value == 1){
+            name="支付宝"
+        }
+    return name
+}
+
+template.defaults.imports.recharge_state = function(value) {
+    var name=""
+    switch (value) {
+        case 1:
+            name="失败"
+            break;
+        case 2:
+            name="成功"
+            break;
+        default:
+            name="未知"
+            break;
+    }
+    return name
+}
 
 
 

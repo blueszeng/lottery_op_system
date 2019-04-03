@@ -29,17 +29,17 @@
                                     <th width="40"><input name="" type="checkbox" value=""></th>
                                     <th width="100">用户ID</th>
 									<th width="100">用户昵称</th>
-                                    <th width="100">宝箱ID</th>
+                                    <th width="100">宝箱名称</th>
                                     <th width="80">宝箱数量</th>
                                 </tr>
 							</thead>
-							<tbody>
+							<tbody> 
 								{{each userArr as value index}}
                                  <tr class="text-c">
                                     <td><input name="" type="checkbox" value=""></td>
                                     <td>{{value.id}}</td>
-                                    <td>{{value.uid}}</td>
-                                    <td>{{value.box_id}}</td>
+                                    <td>{{value.User.name}}</td>
+                                    <td>{{value.Box.name}}</td>
                                     <td>{{value.box_num}}</td> 
                                 </tr>
                             	{{/each}}

@@ -54,6 +54,9 @@ export default (sequelize, DataTypes) => {
         classMethods: {},
         instanceMethods: {}
     })
-
+      // 添加一个类级别的方法
+      Order.associate = function(models) {
+        models.Order.belongsTo(models.User, { foreignKey: 'uid' })
+    }
     return Order
 }
