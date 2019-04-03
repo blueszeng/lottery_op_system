@@ -40,5 +40,6 @@ export default (sequelize, DataTypes) => {
         models.UserBox.belongsTo(models.Box, { foreignKey: 'box_id' })
         models.UserBox.belongsTo(models.User, { foreignKey: 'uid' })
     }
+    
     return UserBox
 }
