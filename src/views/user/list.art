@@ -16,7 +16,29 @@
 			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 		</nav>
 		<article class="Hui-admin-content clearfix">
-        
+              <div class="panel">
+                <div class="panel-body">
+                    <div class="text-c">
+                        <span style="width:100px">游戏：</span>
+                        <span class="select-box" style="width:150px">
+                        <select id="gameId" name="" class="select">
+                            {{if gameId == 0}}
+                                <option value="0" selected>全部游戏</option>
+                            {{/if}}
+                            {{each games as value index}}
+                                {{if gameId == value.id}}
+                                    <option value="{{value.id}}" selected>{{value.name}}</option>
+                                 {{else}}
+                                     <option value="{{value.id}}">{{value.name}}</option>
+                                {{/if}}
+                            {{/each}}
+                        </select></span>
+                        <span style="width:100px">用户名称：</span>
+                        <input type="text" class="input-text" style="width:150px" placeholder="输入用户名称" id="boxName" value="{{boxName}}">
+                        <button type="button" class="btn btn-success" id="search" name="">搜索</button>
+                    </div>
+                </div>
+            </div>
 			<div class="panel mt-20">
 				<div class="panel-body">
 					<div class="clearfix">

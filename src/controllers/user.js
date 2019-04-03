@@ -21,10 +21,13 @@ const listPage = async (ctx, next) => {
         query
     } = ctx.request
     let userArr = await models.User.findAll()
+    const games = await models.Game.findAll({ attributes: ['id', 'name'] })
+
     await ctx.render('user/list', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
-        userArr
+        userArr,
+        games
     })
 }
 
