@@ -29,7 +29,7 @@
                                     <th width="40"><input name="" type="checkbox" value=""></th>
                                     <th width="100">用户ID</th>
 									<th width="100">用户昵称</th>
-                                    <th width="100">物品ID</th>
+                                    <th width="100">物品名称</th>
                                     <th width="80">物品数量</th>
                                 </tr>
 							</thead>
@@ -38,8 +38,8 @@
                                  <tr class="text-c">
                                     <td><input name="" type="checkbox" value=""></td>
                                     <td>{{value.id}}</td>
-                                    <td>{{value.uid}}</td>
-                                    <td>{{value.goods_id}}</td>
+                                    <td>{{value.User.name}}</td>
+                                    <td>{{value.Good.name}}</td>
                                     <td>{{value.goods_num}}</td> 
                                 </tr>
                             	{{/each}}
