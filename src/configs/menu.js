@@ -188,6 +188,18 @@ const menu = [{
                 'link': '#',
                 'dataHref': '/user/goodsListPage',
                 'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户抽奖记录',
+                'link': '#',
+                'dataHref': '/user/winPrizePushListPage',
+                'onclick': 'Hui_admin_tab(this)'
+            },
+            {
+                'text': '用户赠送记录',
+                'link': '#',
+                'dataHref': '/user/giveGoodsListPage',
+                'onclick': 'Hui_admin_tab(this)'
             }
         ]
     }
