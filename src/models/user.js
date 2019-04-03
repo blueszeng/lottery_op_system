@@ -46,8 +46,8 @@ export default (sequelize, DataTypes) => {
     User.associate = function(models) {
         User.hasMany(models.UserGoods, { foreignKey: 'uid', targetKey: 'id' });
         User.hasMany(models.Order, { foreignKey: 'uid', targetKey: 'id' });
-        User.hasMany(models.GiveGoods, { foreignKey: 'send_uid', targetKey: 'id' });
-        User.hasMany(models.GiveGoods, { foreignKey: 'recv_uid', targetKey: 'id' });
+        // User.hasMany(models.GiveGoods, { foreignKey: 'send_uid', targetKey: 'id' });
+        // User.hasMany(models.GiveGoods, { foreignKey: 'recv_uid', targetKey: 'id' });
         User.hasMany(models.DecomposeGoods, { foreignKey: 'uid', targetKey: 'id' });
         User.hasMany(models.ExchangeGoods, { foreignKey: 'uid', targetKey: 'id' });
     }

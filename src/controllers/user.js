@@ -11,12 +11,12 @@ const Op = Sequelize.Op
 
 import debug from '../utils/debug'
 const log = debug(__filename)
-    /**
-     * 主页面
-     * @param {*} ctx
-     * @param {*} next
-     */
-const listPage = async(ctx, next) => {
+/**
+ * 主页面
+ * @param {*} ctx
+ * @param {*} next
+ */
+const listPage = async (ctx, next) => {
     let {
         query
     } = ctx.request
@@ -33,7 +33,7 @@ const listPage = async(ctx, next) => {
  * @param {*} ctx
  * @param {*} next
  */
-const boxListPage = async(ctx, next) => {
+const boxListPage = async (ctx, next) => {
     let {
         query
     } = ctx.request
@@ -48,6 +48,9 @@ const boxListPage = async(ctx, next) => {
             }
         ]
     })
+    console.log("=======boxListPage   ================");
+    console.log(userArr);
+    
     await ctx.render('user/boxList', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,
@@ -60,33 +63,33 @@ const boxListPage = async(ctx, next) => {
  * @param {*} ctx
  * @param {*} next
  */
-const goodsListPage = async(ctx, next) => {
-        let {
-            query
-        } = ctx.request
-        let userArr = await models.UserGoods.findAll({
-            include: [{
-                    model: models.Goods,
-                    attributes: ['id', 'name']
-                },
-                {
-                    model: models.User,
-                    attributes: ['id', 'name']
-                }
-            ]
-        })
-        await ctx.render('user/goodsList', {
-            sysStatus: ctx.query.sysStatus,
-            sysMsg: ctx.query.sysMsg,
-            userArr
-        })
-    }
-    /**
-     * 主页面
-     * @param {*} ctx
-     * @param {*} next
-     */
-const rechargeListPage = async(ctx, next) => {
+const goodsListPage = async (ctx, next) => {
+    let {
+        query
+    } = ctx.request
+    let userArr = await models.UserGoods.findAll({
+        include: [{
+                model: models.Goods,
+                attributes: ['id', 'name']
+            },
+            {
+                model: models.User,
+                attributes: ['id', 'name']
+            }
+        ]
+    })
+    await ctx.render('user/goodsList', {
+        sysStatus: ctx.query.sysStatus,
+        sysMsg: ctx.query.sysMsg,
+        userArr
+    })
+}
+/**
+ * 主页面
+ * @param {*} ctx
+ * @param {*} next
+ */
+const rechargeListPage = async (ctx, next) => {
     let {
         query
     } = ctx.request
@@ -109,19 +112,20 @@ const rechargeListPage = async(ctx, next) => {
  * @param {*} ctx
  * @param {*} next
  */
-const winPrizePushListPage = async(ctx, next) => {
+const winPrizePushListPage = async (ctx, next) => {
     let {
         query
     } = ctx.request
     let userArr = await models.WinPrizePush.findAll({
         include: [{
-            model: models.User,
-            attributes: ['id', 'name']
-        },
-        {
-            model: models.Goods,
-            attributes: ['id', 'name']
-        }]
+                model: models.User,
+                attributes: ['id', 'name']
+            },
+            {
+                model: models.Goods,
+                attributes: ['id', 'name']
+            }
+        ]
     })
     await ctx.render('user/winPrizePushList', {
         sysStatus: ctx.query.sysStatus,
@@ -136,26 +140,26 @@ const winPrizePushListPage = async(ctx, next) => {
  * @param {*} ctx
  * @param {*} next
  */
-const giveGoodsListPage = async(ctx, next) => {
+const giveGoodsListPage = async (ctx, next) => {
     let {
         query
     } = ctx.request
     let userArr = await models.GiveGoods.findAll({
         include: [{
-            model: models.User,
-            attributes: ['id', 'name']
-        },
-        {
-            model: models.Goods,
-            attributes: ['id', 'name']
-        },
-        {
-            model: models.User,
-            // attributes:['u',['id', 'name']] 
-            attributes: { include: [[['id', 'name'], 'no_hats']] }
-        }]
+                model: models.Goods,
+                attributes: ['id', 'name']
+            },
+            {
+                model: models.User,
+                as: 'SendUser',
+                attributes: ['id', 'name']
+            }, {
+                model: models.User,
+                as: 'RecvUser',
+                attributes: ['id', 'name']
+            }
+        ]
     })
-
     console.log(JSON.stringify(userArr, undefined, 2))
     console.log('============user giveGoodsListPage ========================');
     await ctx.render('user/giveGoodsList', {

@@ -62,9 +62,8 @@ export default (sequelize, DataTypes) => {
     // 添加一个类级别的方法
     GiveGoods.associate = function(models) {
         models.GiveGoods.belongsTo(models.Goods, { foreignKey: 'goods_id' })
-        models.GiveGoods.belongsTo(models.User, { foreignKey: 'send_uid' })
-        models.GiveGoods.belongsTo(models.User, { foreignKey: 'recv_uid' })
-
+        models.GiveGoods.belongsTo(models.User, { as: 'SendUser', foreignKey: 'send_uid' })
+        models.GiveGoods.belongsTo(models.User, { as: 'RecvUser', foreignKey: 'recv_uid' })
     }
     return GiveGoods
 }
