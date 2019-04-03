@@ -11,11 +11,11 @@ const router = Router({
 // https://github.com/demopark/sequelize-docs-Zh-CN/blob/master/querying.md 数据库orm文档
 
 /* 页面 */
-router.get('/listPage', user.listPage) 
-router.get('/boxListPage', user.boxListPage) 
-router.get('/goodsListPage', user.goodsListPage) 
-router.get('/rechargeListPage', user.rechargeListPage) 
-
+router.get('/listPage', user.listPage)
+router.get('/boxListPage', user.boxListPage)
+router.get('/goodsListPage', user.goodsListPage)
+router.get('/rechargeListPage', user.rechargeListPage)
+router.get('/winPrizePushListPage', user.winPrizePushListPage)
 
 
 
