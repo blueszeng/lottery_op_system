@@ -17,22 +17,54 @@ const log = debug(__filename)
      * @param {*} next
      */
 const listPage = async(ctx, next) => {
-    let {
-        query
-    } = ctx.request
-    let userArr = await models.User.findAll()
-    await ctx.render('user/list', {
-        sysStatus: ctx.query.sysStatus,
-        sysMsg: ctx.query.sysMsg,
-        userArr
-    })
-}
+        let { query } = ctx.request
+        query.uid = query.uid || 0
+        const validateSchema = Joi.object().keys({
+            page: Joi.number().label('页数'),
+            uid: Joi.number().label('用户id'),
+        })
+        try {
+            query = await validate(query, validateSchema)
 
-/**
- * 宝箱
- * @param {*} ctx
- * @param {*} next
- */
+            let limit = 10
+            let page = query.page || 1
+            let t_page = page - 1
+            let offset = limit * t_page
+            let where = {}
+            if (query.uid > 0) {
+                where.id = query.uid
+            }
+            const count = await models.User.count({
+                where,
+            })
+            let userArr = await models.User.findAll({
+                offset,
+                limit,
+                where
+            })
+            await ctx.render('user/list', {
+                sysStatus: ctx.query.sysStatus,
+                sysMsg: ctx.query.sysMsg,
+                count,
+                page,
+                limit,
+                uid: query.uid > 0 ? query.uid : "",
+                userArr
+            })
+        } catch (err) {
+            log('验证参数错误', err.message)
+            const locals = {
+                sysStatus: 'error',
+                sysMsg: escape(err.message)
+            }
+            return ctx.redirect(`user/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+        }
+    }
+    /**
+     * 宝箱
+     * @param {*} ctx
+     * @param {*} next
+     */
 const boxListPage = async(ctx, next) => {
     let {
         query

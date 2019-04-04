@@ -55,8 +55,10 @@ const URL = {
     },
     CONFIG: {
         EDIT: { url: `/config/edit`, method: 'post' }
+    },
+    USER: {
+        SEARCH: { url: `/user/listPage`, method: 'get' }
     }
-
 }
 export const getServer = (type, key) => {
     return {
