@@ -80,6 +80,9 @@ const boxListPage = async(ctx, next) => {
             }
         ]
     })
+    console.log("=======boxListPage   ================");
+    console.log(userArr);
+
     await ctx.render('user/boxList', {
         sysStatus: ctx.query.sysStatus,
         sysMsg: ctx.query.sysMsg,

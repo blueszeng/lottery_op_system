@@ -37,15 +37,18 @@
                                 </tr>
 							</thead>
 							<tbody>
-								// {{each userArr as value index}}
-                                //  <tr class="text-c">
-                                //     <td><input name="" type="checkbox" value=""></td>
-                                //     <td>{{value.id}}</td>
-                                //     <td>{{value.User.name}}</td>
-                                //     <td>{{value.pay_type}}</td>
-                                //     <td>{{value.sdcustomno}}</td> 
-                                // </tr>
-                            	// {{/each}}
+								{{each userArr as value index}}
+                                 <tr class="text-c">
+                                    <td><input name="" type="checkbox" value=""></td>
+                                    <td>{{value.id}}</td>
+                                    <td>{{value.orderid}}</td>
+                                    <td>{{value.SendUser.name}}</td>
+                                    <td>{{value.RecvUser.name}}</td> 
+									<td>{{value.Good.name}}</td> 
+									<td>{{value.goods_num}}</td> 
+									<td>{{value.state}}</td> 
+                                </tr>
+                            	{{/each}}
 							</tbody>
 						</table>
 					</div>
