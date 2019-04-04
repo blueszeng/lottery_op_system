@@ -16,7 +16,15 @@
 			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 		</nav>
 		<article class="Hui-admin-content clearfix">
-        
+         <div class="panel">
+                <div class="panel-body">
+                    <div class="text-c">
+                        <span style="width:100px">用户ID：</span>
+                        <input type="text" class="input-text" style="width:150px" placeholder="输入UID" id="uid" value="{{uid}}">
+                        <button type="button" class="btn btn-success" id="search" name="">搜索</button>
+                    </div>
+                </div>
+            </div>
 			<div class="panel mt-20">
 				<div class="panel-body">
 					<div class="clearfix">
@@ -61,5 +69,19 @@
     <script type="text/javascript">
      $('.table-sort').dataTable({
     })
+    </script>
+	<script type="text/javascript">
+		let tempPage = {{count / limit}}
+		if ({{count % limit > 0}}) {
+			tempPage += 1
+		}
+		let data = {
+			totalPage: tempPage ,
+			totalRecords: {{count}},
+			pageNo: {{page}},
+			url: '/user/listPage',
+			data: ['uid']
+		}
+		pagination(data)
     </script>
 {{/block}}

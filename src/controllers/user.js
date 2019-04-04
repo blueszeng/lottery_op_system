@@ -60,6 +60,7 @@ const listPage = async(ctx, next) => {
             return ctx.redirect(`user/listPage?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
         }
     }
+    
     /**
      * 宝箱
      * @param {*} ctx
@@ -148,22 +149,77 @@ const winPrizePushListPage = async(ctx, next) => {
     let {
         query
     } = ctx.request
-    let userArr = await models.WinPrizePush.findAll({
-        include: [{
-                model: models.User,
-                attributes: ['id', 'name']
-            },
-            {
-                model: models.Goods,
-                attributes: ['id', 'name']
-            }
-        ]
+    query.uid = query.uid || 0
+    const validateSchema = Joi.object().keys({
+        page: Joi.number().label('页数'),
+        uid: Joi.number().label('用户id')
     })
-    await ctx.render('user/winPrizePushList', {
-        sysStatus: ctx.query.sysStatus,
-        sysMsg: ctx.query.sysMsg,
-        userArr
-    })
+    try {
+        query = await validate(query, validateSchema)
+
+        let limit = 10
+        let page = query.page || 1
+        let t_page = page - 1
+        let offset = limit * t_page
+        let where = {}
+        if (query.uid > 0) {
+            where.id = quer.uid
+        }
+        const count = await models.User.count({
+            where,
+        })
+        
+        let userArr = await models.WinPrizePush.findAll({
+            include: [{
+                    model: models.User,
+                    attributes: ['id', 'name']
+                },
+                {
+                    model: models.Goods,
+                    attributes: ['id', 'name']
+                }
+            ],
+            offset,
+            limit,
+            where
+
+        })
+        await ctx.render('user/winPrizePushList', {
+            sysStatus: ctx.query.sysStatus,
+            sysMsg: ctx.query.sysMsg,
+            userArr,
+            limit,
+            page,
+            uid: query.uid > 0 ? query.uid : "",
+            count
+        })
+
+
+    } catch (err) {
+        console.log("错误");
+        log('验证参数错误', err.message)
+        const locals = {
+            sysStatus: 'error',
+            sysMsg: escape(err.message)
+        }
+        return ctx.redirect(`user/winPrizePushList?sysStatus=${locals.sysStatus}&sysMsg=${locals.sysMsg}`)
+    }
+    // let userArr = await models.WinPrizePush.findAll({
+    //     include: [{
+    //             model: models.User,
+    //             attributes: ['id', 'name']
+    //         },
+    //         {
+    //             model: models.Goods,
+    //             attributes: ['id', 'name']
+    //         }
+    //     ]
+    // })
+    // await ctx.render('user/winPrizePushList', {
+    //     sysStatus: ctx.query.sysStatus,
+    //     sysMsg: ctx.query.sysMsg,
+    //     userArr
+    // })
 }
 
 
