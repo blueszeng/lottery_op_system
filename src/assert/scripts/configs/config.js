@@ -57,7 +57,8 @@ const URL = {
         EDIT: { url: `/config/edit`, method: 'post' }
     },
     USER: {
-        SEARCH: { url: `/user/listPage`, method: 'get' }
+        SEARCH: { url: `/user/listPage`, method: 'get' },
+        SEARCH1: { url: `/user/winPrizePushListPage`, method: 'get' }
     }
 }
 export const getServer = (type, key) => {

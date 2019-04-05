@@ -14,4 +14,10 @@ import $ from 'jquery'
         let serve = getServer('USER', 'SEARCH')
         window.location.href = `${serve.url}?uid=${uid}`
     })
+    $('#search1').click(async(event) => {
+        /* Act on the event */
+        let uid = $('#uid').val()
+        let serve = getServer('USER', 'SEARCH1')
+        window.location.href = `${serve.url}?uid=${uid}`
+    })
 })()

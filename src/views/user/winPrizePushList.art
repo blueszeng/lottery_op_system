@@ -3,6 +3,7 @@
 {{block 'title'}}login{{/block}}</title>
 
 {{block 'head'}}
+	<link rel="stylesheet" type="text/css" href="/lib/kkpager_blue.css" />	
 {{/block}}
 
 {{block 'content'}}
@@ -21,7 +22,7 @@
                     <div class="text-c">
                         <span style="width:100px">用户ID：</span>
                         <input type="text" class="input-text" style="width:150px" placeholder="输入UID" id="uid" value="{{uid}}">
-                        <button type="button" class="btn btn-success" id="search" name="">搜索</button>
+                        <button type="button" class="btn btn-success" id="search1" name="">搜索</button>
                     </div>
                 </div>
             </div>
@@ -55,6 +56,7 @@
 						</table>
 					</div>
 				</div>
+				<div id="kkpager"></div>
 			</div>
             
 		</article>
@@ -65,11 +67,8 @@
 	<script type="text/javascript" src="/lib/datatables/1.10.15/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript" src="/static/business/js/main.js"></script>
-    <script type="text/javascript" src="/js/exchang/list.js"></script>
-    <script type="text/javascript">
-     $('.table-sort').dataTable({
-    })
-    </script>
+	<script type="text/javascript" src="/lib/kkpager.min.js"></script>
+    <script type="text/javascript" src="/js/user/list.js"></script>
 	<script type="text/javascript">
 		let tempPage = {{count / limit}}
 		if ({{count % limit > 0}}) {
@@ -79,7 +78,7 @@
 			totalPage: tempPage ,
 			totalRecords: {{count}},
 			pageNo: {{page}},
-			url: '/user/listPage',
+			url: '/user/winPrizePushListPage',
 			data: ['uid']
 		}
 		pagination(data)
