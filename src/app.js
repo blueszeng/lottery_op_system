@@ -54,56 +54,69 @@ template.defaults.imports.jsonStringify = function(value) {
     return JSON.stringify(value)
 }
 template.defaults.imports.cover_state = function(value) {
-    var name=""
+    var name = ""
     switch (value) {
         case 1:
-            name="通过"
+            name = "通过"
             break;
         case 2:
-            name="拒绝"
+            name = "拒绝"
             break;
         default:
-            name="待处理"
+            name = "待处理"
             break;
     }
     return name
 }
 
 template.defaults.imports.pay_type = function(value) {
-    var name="微信"
-        if(value == 1){
-            name="支付宝"
-        }
+    var name = "微信"
+    if (value == 1) {
+        name = "支付宝"
+    }
     return name
 }
 
 template.defaults.imports.recharge_state = function(value) {
-    var name=""
+    var name = ""
     switch (value) {
         case 1:
-            name="失败"
+            name = "失败"
             break;
         case 2:
-            name="成功"
+            name = "成功"
             break;
         default:
-            name="未知"
+            name = "未知"
             break;
     }
     return name
 }
 
 template.defaults.imports.winPrizePush_type = function(value) {
-    var name=""
+    var name = ""
     switch (value) {
         case 1:
-            name="开宝箱"
+            name = "开宝箱"
             break;
         case 2:
-            name="兑换"
+            name = "兑换"
             break;
         default:
-            name="幸运一博"
+            name = "幸运一博"
+            break;
+    }
+    return name
+}
+
+template.defaults.imports.giveGoods_state = function(value) {
+    var name = ""
+    switch (value) {
+        case false:
+            name = "失败"
+            break;
+        case true:
+            name = "成功"
             break;
     }
     return name

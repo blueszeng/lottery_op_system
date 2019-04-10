@@ -58,7 +58,12 @@ const URL = {
     },
     USER: {
         SEARCH: { url: `/user/listPage`, method: 'get' },
-        SEARCH1: { url: `/user/winPrizePushListPage`, method: 'get' }
+        SEARCH1: { url: `/user/winPrizePushListPage`, method: 'get' },
+        SEARCH2: { url: `/user/rechargeListPage`, method: 'get' },
+        SEARCH3: { url: `/user/boxListPage`, method: 'get' },
+        SEARCH4: { url: `/user/goodsListPage`, method: 'get' },
+        SEARCH5: { url: `/user/giveGoodsListPage`, method: 'get' }
+
     }
 }
 export const getServer = (type, key) => {

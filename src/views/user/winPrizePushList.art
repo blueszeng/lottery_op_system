@@ -3,7 +3,7 @@
 {{block 'title'}}login{{/block}}</title>
 
 {{block 'head'}}
-	<link rel="stylesheet" type="text/css" href="/lib/kkpager_blue.css" />	
+	<link rel="stylesheet" type="text/css" href="/lib/kkpager_blue.css" />
 {{/block}}
 
 {{block 'content'}}
@@ -29,13 +29,12 @@
 			<div class="panel mt-20">
 				<div class="panel-body">
 					<div class="clearfix">
-						<span class="r">共有数据：<strong>6</strong> 条</span>
+						<span class="r">共有数据：<strong>{{count}}</strong> 条</span>
 					</div>
 					<div class="mt-20 clearfix">
 						<table class="table table-border table-bordered table-bg table-hover table-sort">
 							<thead>
 								<tr class="text-c">
-                                    <th width="40"><input name="" type="checkbox" value=""></th>
                                     <th width="100">ID</th>
 									<th width="100">获取类型</th>
                                     <th width="100">用户名称</th>
@@ -45,7 +44,6 @@
 							<tbody>  
 								{{each userArr as value index}}
                                  <tr class="text-c">
-                                    <td><input name="" type="checkbox" value=""></td>
                                     <td>{{value.id}}</td>
 									<td>{{winPrizePush_type(value.type)}}</td> 
                                     <td>{{value.User.name}}</td>

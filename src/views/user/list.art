@@ -17,7 +17,7 @@
 			<a class="btn btn-success radius f-r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 		</nav>
 		<article class="Hui-admin-content clearfix">
-		     <div class="panel">
+		    <div class="panel">
                 <div class="panel-body">
                     <div class="text-c">
                         <span style="width:100px">用户ID：</span>
@@ -29,13 +29,12 @@
 			<div class="panel mt-20">
 				<div class="panel-body">
 					<div class="clearfix">
-						<span class="r">共有数据：<strong>6</strong> 条</span>
+						<span class="r">共有数据：<strong>{{count}}</strong> 条</span>
 					</div>
 					<div class="mt-20 clearfix">
 						<table class="table table-border table-bordered table-bg table-hover table-sort">
 							<thead>
 								<tr class="text-c">
-                                    <th width="40"><input name="" type="checkbox" value=""></th>
                                     <th width="100">ID</th>
                                     <th width="100">用户头像</th>
                                     <th width="80">用户名称</th>
@@ -46,7 +45,6 @@
 							<tbody>
 								{{each userArr as value index}}
                                  <tr class="text-c">
-                                    <td><input name="" type="checkbox" value=""></td>
                                     <td>{{value.id}}</td>
                                     <td>
                                         <a href="javascript:;"><img width="100" class="picture-thumb" src={{value.head}}></a>

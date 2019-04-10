@@ -20,7 +20,7 @@
 			<div class="panel mt-20">
 				<div class="panel-body">
 					<div class="clearfix">
-						<span class="r">共有数据：<strong>6</strong> 条</span>
+						<span class="r">共有数据：<strong>{{ExchangeGoods.length}}</strong> 条</span>
 					</div>
 					<div class="mt-20 clearfix">
 						<table class="table table-border table-bordered table-bg table-hover table-sort">
